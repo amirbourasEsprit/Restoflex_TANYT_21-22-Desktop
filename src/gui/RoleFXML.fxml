@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="830.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RoleFXMLController">
+   <children>
+      <TableView fx:id="tv_role" layoutX="338.0" layoutY="216.0" onMouseClicked="#role_tabV" prefHeight="342.0" prefWidth="525.0">
+        <columns>
+          <TableColumn fx:id="Nom_role_col" prefWidth="524.0" text="Nom rôle" />
+        </columns>
+      </TableView>
+      <Button fx:id="ajout_role" layoutX="720.0" layoutY="619.0" mnemonicParsing="false" onAction="#ajout_btn" prefHeight="53.0" prefWidth="139.0" styleClass="blue-btn" text="Ajouter" />
+      <Button fx:id="supprimer_role" layoutX="720.0" layoutY="619.0" mnemonicParsing="false" onAction="#supprimer_btn" prefHeight="53.0" prefWidth="139.0" styleClass="blue-btn" text="Supprimer" />
+      <TextField fx:id="nom_rol_text" layoutX="377.0" layoutY="630.0" />
+      <Label fx:id="nom_role_lab" layoutX="377.0" layoutY="600.0" text="Nom rôle" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="1162.0" layoutY="28.0" mnemonicParsing="false" onAction="#close_window" styleClass="trans-btn-red-border" text="X" textFill="#f20606">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="show_ajout_role" layoutX="631.0" layoutY="159.0" mnemonicParsing="false" onAction="#show_ajout_role" prefHeight="43.0" prefWidth="228.0" styleClass="blue-btn" text="+ Ajouter un nouveau rôle" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="22.0" prefHeight="55.0" prefWidth="353.0" text="Liste des Rôles" textFill="#0d3b6a" underline="true">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

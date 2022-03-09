@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="831.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EmployeListFXMLController">
+   <children>
+      <TableView fx:id="tv_emp" layoutX="54.0" layoutY="106.0" onMouseClicked="#temp_tab_click" prefHeight="534.0" prefWidth="1100.0">
+        <columns>
+          <TableColumn fx:id="nom_emp_col" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="prenom_emp_col" prefWidth="75.0" text="prenom" />
+            <TableColumn fx:id="cin_emp_col" prefWidth="75.0" text="Cin" />
+            <TableColumn fx:id="email_emp_col" prefWidth="85.0" text="email" />
+            <TableColumn fx:id="num_tel_emp_col" prefWidth="106.0" text="num_tel" />
+            <TableColumn fx:id="dnaissance_emp_col" prefWidth="125.0" text="date Naissance" />
+            <TableColumn fx:id="addresse_emp_col" prefWidth="89.0" text="adresse" />
+            <TableColumn fx:id="salaire_emp_col" prefWidth="99.0" text="salaire" />
+            <TableColumn fx:id="solde_conge_emp_col" prefWidth="112.0" text="solde_conge" />
+            <TableColumn fx:id="poste_emp_col" prefWidth="131.0" text="Poste employe" />
+            <TableColumn fx:id="status_emp_col" prefWidth="131.0" text="Status" />
+        </columns>
+      </TableView>
+      <TextField fx:id="salaire_emp_text" layoutX="196.0" layoutY="683.0" />
+      <TextField fx:id="solde_cong_text" layoutX="479.0" layoutY="683.0" />
+      <TextField fx:id="poste_employ_text" layoutX="765.0" layoutY="683.0" />
+      <Button fx:id="modf_btn_emp" layoutX="807.0" layoutY="763.0" mnemonicParsing="false" onAction="#modifier_emp" prefHeight="53.0" prefWidth="157.0" styleClass="blue-btn" text="Modifier" />
+      <Button fx:id="supprim_emp_btn" layoutX="985.0" layoutY="763.0" mnemonicParsing="false" onAction="#supprimer_emp" prefHeight="53.0" prefWidth="157.0" styleClass="blue-btn" text="Supprimer" />
+      <Hyperlink fx:id="vider_aff_id" layoutX="1098.0" layoutY="640.0" onAction="#vider_aff" text="Cacher" />
+      <Button layoutX="1157.0" layoutY="38.0" mnemonicParsing="false" onAction="#close_window" styleClass="trans-btn-red-border" text="X" textFill="#f20606">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Button>
+      <Label fx:id="salairetxt" layoutX="196.0" layoutY="655.0" text="Salaire" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="congetxt" layoutX="479.0" layoutY="655.0" text="Solde congé" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="postetxt" layoutX="765.0" layoutY="655.0" text="Poste employe" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="verifierEmploye" layoutX="627.0" layoutY="763.0" mnemonicParsing="false" onAction="#verifierEmploye" prefHeight="53.0" prefWidth="157.0" styleClass="blue-btn" text="Verifier" />
+      <Button fx:id="nonVerifierEmploye" layoutX="627.0" layoutY="763.0" mnemonicParsing="false" onAction="#nonVerifierEmploye" prefHeight="53.0" prefWidth="157.0" styleClass="blue-btn" text="Non verifier" />
+      <TextField fx:id="recherche" layoutX="54.0" layoutY="62.0" onKeyReleased="#recherche" promptText="Tapez le nom" />
+      <Label layoutX="463.0" layoutY="12.0" text="Liste Employées" textFill="#0d3b6a" underline="true">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

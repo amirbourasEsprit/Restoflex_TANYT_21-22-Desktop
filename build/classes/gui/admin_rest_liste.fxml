@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="830.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Admin_rest_listeController">
+   <children>
+      <TableView fx:id="tv_rest" layoutX="114.0" layoutY="182.0" onMouseClicked="#temp_tab_click" prefHeight="460.0" prefWidth="973.0">
+        <columns>
+          <TableColumn fx:id="Nom_rest_col" prefWidth="173.0" text="Nom" />
+          <TableColumn fx:id="spec_rest_col" prefWidth="195.0" text="Specialité" />
+            <TableColumn fx:id="adresse_rest_col" prefWidth="180.0" text="Adresse" />
+            <TableColumn fx:id="email_rest_col" prefWidth="200.0" text="Email" />
+            <TableColumn fx:id="tel_rest_col" prefWidth="224.0" text="Numéro télèphone" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn_add_res" layoutX="826.0" layoutY="134.0" mnemonicParsing="false" onAction="#show_add_rest" prefHeight="40.0" prefWidth="261.0" styleClass="blue-btn" text="+ Ajouter nouveau Restaurant">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <TextField fx:id="nom_rest" layoutX="143.0" layoutY="683.0" prefHeight="31.0" prefWidth="151.0" stylesheets="@styles.css" />
+      <TextField fx:id="spec_rest" layoutX="332.0" layoutY="683.0" prefHeight="31.0" prefWidth="151.0" />
+      <TextField fx:id="adresse_rest" layoutX="519.0" layoutY="683.0" prefHeight="31.0" prefWidth="151.0" />
+      <TextField fx:id="Email_rest" layoutX="709.0" layoutY="683.0" prefHeight="31.0" prefWidth="151.0" />
+      <TextField fx:id="tel_rest" layoutX="905.0" layoutY="683.0" prefHeight="31.0" prefWidth="151.0" />
+      <Button fx:id="udp_btn" layoutX="711.0" layoutY="745.0" mnemonicParsing="false" onAction="#update_rest" prefHeight="51.0" prefWidth="151.0" styleClass="blue-btn" text="Modifier" />
+      <Button fx:id="ajout_btn" layoutX="907.0" layoutY="745.0" mnemonicParsing="false" onAction="#ajout_rest" prefHeight="51.0" prefWidth="151.0" styleClass="blue-btn" text="Inserer" />
+      <Button fx:id="del_btn" layoutX="907.0" layoutY="745.0" mnemonicParsing="false" onAction="#delete_rest" prefHeight="51.0" prefWidth="151.0" styleClass="blue-btn" text="Supprimer" />
+      <Label fx:id="nom_lab" layoutX="145.0" layoutY="656.0" text="Nom" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="adresse_lab" layoutX="521.0" layoutY="656.0" text="Adresse" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="spec_lab" layoutX="334.0" layoutY="656.0" text="Spécialité" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="tel_lab" layoutX="907.0" layoutY="656.0" text="Télèphone" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="email_lab" layoutX="711.0" layoutY="656.0" text="Email" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="1162.0" layoutY="28.0" mnemonicParsing="false" onAction="#close_window" styleClass="trans-btn-red-border" text="X" textFill="#f20606">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="annul_btn" layoutX="511.0" layoutY="745.0" mnemonicParsing="false" onAction="#annuler_operation" prefHeight="51.0" prefWidth="151.0" styleClass="blue-btn" text="Annuler" textFill="WHITE" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="12.0" prefHeight="55.0" prefWidth="353.0" text="Liste des Restaurant" textFill="#0d3b6a" underline="true">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

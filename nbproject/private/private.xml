@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/Dashboard_EmploFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/entities/MyAddress.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/Admin_rest_listeController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/test/MainClass.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/gui/forgetPaswordFXML.fxml</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/AjoutFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/gui/Dashboard_FournFXML.fxml</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/StatgerantFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/test/FXMain.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/service/UtilisateurService.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/gui/StatgerantFXML.fxml</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/RoleFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/Gerant_modifier_profileFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/Dashboard_GerantFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/SignInController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/entities/fournisseur.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/entities/utilisateur.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/service/ServiceNotification.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/gui/Dashboard_EmploFXML.fxml</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/FournisseurListFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/Dashboard_FournFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/service/MyLocation.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/SignUpController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/service/SendMail.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/LoginController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/EmployeListFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/ForgetPaswordFXMLController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/service/RestaurantService.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/Controller/Dashboard_Admin_restoflexController.java</file>
+            <file>file:/C:/Users/boura/Documents/NetBeansProjects/3A14_pi/src/gui/SignUp.fxml</file>
+        </group>
+    </open-files>
+</project-private>
