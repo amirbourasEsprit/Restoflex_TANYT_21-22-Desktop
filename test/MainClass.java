@@ -6,6 +6,7 @@
 package test;
 
 
+import Service.SendMailYosr;
 import entities.Conge;
 import entities.type_conge;
 import java.sql.SQLException;
@@ -41,5 +42,13 @@ public class MainClass {
       Tcong.supprimerTypeConge(2);
       Tcong.modifierTypeConge(0,c); 
       */
+        SendMailYosr sn = new SendMailYosr();
+        String corps = "Madame, Monsieur,\n" +
+            "Vous m’avez demandé, par lettre recommandée datée du (précisez), à bénéficier d’un congé (type conge) d’une durée de (précisez).\n" +
+            "Par la présente, je vous informe que j’accepte votre demande.\n" +
+            "Je vous confirme également vos dates d’absence ; du (précisez la date) au (précisez la date).\n" +
+            "Je vous prie d’agréer, Madame, Monsieur, mes respectueuses salutations. \n"+ "Cordialement";
+        sn.envoyerMail("yosrbelaam1999@gmail.com","Congé Approuvé",corps);
+        
     }
 }

@@ -22,18 +22,19 @@ import javafx.stage.Stage;
  * @author Yosr Belaam
  */
 public class FXMain extends Application {
-    
+
     @Override
     public void start(Stage stage) throws IOException {
         //Parent root = FXMLLoader.load(getClass().getResource("../gui/Ajout_CongeFXML.fxml"));
         //stage.setTitle("Ajout Congé");
-        Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_CongeFXML.fxml"));
-        stage.setTitle("Afficher Congé");
+        Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_Conge_Gerant.fxml"));
+        stage.setTitle("Afficher Congé Gerant");
+        //Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_Conge_Emp.fxml"));
+        //stage.setTitle("Afficher Congé Employé");
         //Parent root = FXMLLoader.load(getClass().getResource("../gui/Ajout_Type_CongeFXML.fxml"));
         //stage.setTitle("Ajout Type Congé");
         //Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_Type_CongeFXML.fxml"));
         //stage.setTitle("Afficher Type Congé");
-       
         stage.setScene(new Scene(root, 1300, 700));
         stage.show();
     }
@@ -44,5 +45,5 @@ public class FXMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

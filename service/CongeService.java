@@ -84,8 +84,8 @@ public class CongeService implements I_CongeService<Conge>{
             System.err.println(ex.getMessage());
         }
     }
-    @Override
-    public ObservableList<Conge> afficherConge() {
+    
+    public ObservableList<Conge> afficherConge2() {
           ObservableList<Conge> congList = FXCollections.observableArrayList();
       String select="SELECT * FROM `conge`";
         try {
@@ -166,14 +166,15 @@ public class CongeService implements I_CongeService<Conge>{
     
     }
       
-    public ObservableList<Conge> RechercherConge(int id) {
+    public ObservableList<Conge> RechercherConge(String nom) {
           ObservableList<Conge> congList = FXCollections.observableArrayList();
-      String select="SELECT * FROM `conge` where id_utilisateur= '"+id+"'";
+      String select="SELECT * FROM conge c inner join utilisateur u on c.id_utilisateur=u.id_utilisateur where nom LIKE'%"+nom+"%'";
         try {
             ste= con.createStatement();
             ResultSet rs = ste.executeQuery(select);
             while(rs.next()){
                 Conge cong = new Conge();
+                utilisateur u= new utilisateur(); 
                  cong.setId_conge(rs.getInt(1));
                  cong.setDate_deb(rs.getDate(2));
                  cong.setDate_fin(rs.getDate(3));
@@ -181,8 +182,13 @@ public class CongeService implements I_CongeService<Conge>{
                  cong.setEtat(rs.getString(5));
                  cong.setId_type_conge(rs.getInt(6));
                  cong.setId_utilisateur(rs.getInt(7));
+                u.setId_utilisateur(rs.getInt(8));
+                u.setNom(rs.getString(9));
+                u.setPrenom(rs.getString(10));
+                cong.user=u;
+                
                 congList.add(cong);
-                System.out.println("Rechercher fait ");
+                System.out.println("Recherche faite ");
             }
 
         } catch (Exception e) {
@@ -211,23 +217,29 @@ public class CongeService implements I_CongeService<Conge>{
 
 
    
-    public ObservableList<Conge> afficherConge2()  { //non utilisé mais khaliha
+    public ObservableList<Conge> afficherConge(int id_resto)  { 
         ObservableList<Conge> congList = FXCollections.observableArrayList();
-      String select="SELECT u.nom,c.date_deb,c.date_fin,c.etat from utilisateur u "
-              + "inner join conge c on u.id_utilisateur=c.id_utilisateur";
+      
+        String select="SELECT * from conge c  "
+              + "inner join utilisateur u on c.id_utilisateur=u.id_utilisateur where id_rest="+id_resto;//id resto integration
         try {
             ste= con.createStatement();
             ResultSet rs = ste.executeQuery(select);
             while(rs.next()){
                 Conge cong = new Conge();
                 utilisateur u= new utilisateur();
-                 u.setNom(rs.getString(1));
+                cong.setId_conge(rs.getInt(1));
                  cong.setDate_deb(rs.getDate(2));
                  cong.setDate_fin(rs.getDate(3));
                  cong.setSolde_restant(rs.getInt(4));
                  cong.setEtat(rs.getString(5));
                  cong.setId_type_conge(rs.getInt(6));
                  cong.setId_utilisateur(rs.getInt(7));
+                 u.setId_utilisateur(rs.getInt(8));
+                 u.setNom(rs.getString(9));
+                 u.setPrenom(rs.getString(10));
+                 u.setEmail(rs.getString(13));
+                 cong.user=u;
                 congList.add(cong);
                 System.out.println("affichage avec succée");
             }
@@ -237,5 +249,6 @@ public class CongeService implements I_CongeService<Conge>{
         }
     return congList;
     }
+
 
 }

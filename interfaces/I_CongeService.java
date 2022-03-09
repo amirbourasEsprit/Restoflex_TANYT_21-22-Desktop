@@ -16,7 +16,6 @@ public interface I_CongeService <T>  {
       void ajouterConge(T entity) throws SQLException;;
         void modifierConge (T entity)throws SQLException;
         void supprimerConge (int id) throws SQLException;
-        List<T> afficherConge();
-        //List<T> afficherConge2();//nom fonctionnel
+        List<T> afficherConge(int id);
         
 }
