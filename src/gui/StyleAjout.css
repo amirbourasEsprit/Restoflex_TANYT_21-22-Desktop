@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 3 mars 2022, 12:53:49
+    Author     : Asus
+*/
+.button {
+    -fx-font-veight: bold;
+    -fx-background-color: #1e85f1;
+    -fx-background-radius: 22;
+    -fx-font-size: 15;
+    -fx-text-fill: white;
+   
+}
+.button:hover{
+    -fx-font-veight: bold;
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-font-size: 16;
+    -fx-text-fill: #1e85f1;
+    -fx-border-color: #1e85f1;
+    -fx-border-radius:20;
+    -fx-bordor-width:3;
+    
+}
+.button:pressed{
+    -fx-font-veight: bold;
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-font-size: 16;
+    -fx-text-fill: #1e85f1;
+    -fx-border-color: #1e85f1;
+    -fx-border-radius:20;
+    -fx-bordor-width: 3;
+    -fx-rotate:10;
+    
+}
+
