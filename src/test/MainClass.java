@@ -23,11 +23,20 @@ public class MainClass {
         
         
         FactureService fs = new FactureService();
-        facture f1 = new facture(1247, "payée", 1, 3);
-         //fs.ajouterFacture(f1);
-           fs.modifierFacture(1, f1);
-        // fs.supprimerFacture(5);
-        // System.out.println(fs.afficherFacture()); 
+        java.util.Date date = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        facture f1 = new facture(sqlDate, 1700, "non payée", 1, 3);
+        //fs.ajouterFacture(f1);
+       // fs.modifierFacture(4, f1);
+       // fs.supprimerFacture(5);
+       // System.out.println(fs.afficherFacture()); 
+       // fs.rechercherFournisseur(3);
+       // fs.afficherFactureRest(3);
+       // fs.calculTotal(2);
+       //fs.nbFacturePayee();
+      // fs.nbFactureNPayee();
+      //fs.afficherCommande(3, 1);
+   
         
        // FrnsRestService fr = new FrnsRestService();
        // fournisseur_restaurant frt = new fournisseur_restaurant(3, 1);
