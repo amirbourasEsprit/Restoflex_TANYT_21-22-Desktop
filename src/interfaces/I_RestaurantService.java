@@ -11,13 +11,13 @@ import java.util.List;
 
 /**
  *
- * @author boura
+ * @author Nesrine
  */
 public interface I_RestaurantService<T> {
     
-        void ajouter(T entity) throws SQLException;;
-        void modifier (long id,T entity)throws SQLException;
-        void supprimer (long id) throws SQLException;
-        List<T> afficher();
+        public void ajouterRestaurant(T entity) throws SQLException;;
+        public void modifierRestaurant (long id,T entity)throws SQLException;
+        public void supprimerRestaurant (long id) throws SQLException;
+        public List<T> afficherRestaurant();
         
 }

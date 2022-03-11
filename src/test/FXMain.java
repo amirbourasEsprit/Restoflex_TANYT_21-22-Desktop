@@ -6,6 +6,8 @@
 package test;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,19 +20,20 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Asus
+ * @author Nesrine
  */
 public class FXMain extends Application {
     
     @Override
-    public void start(Stage stage) {
-         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/TypeRecFXML.fxml"));
+    public void start(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/CmdFournisseur.fxml"));
             Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

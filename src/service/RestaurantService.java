@@ -18,7 +18,7 @@ import util.MyConnection;
 
 /**
  *
- * @author boura
+ * @author Nesrine
  */
 public class RestaurantService implements I_RestaurantService<restaurant>{
   private Connection con;
@@ -29,7 +29,7 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
     }
     
     @Override
-    public void ajouter(restaurant r) throws SQLException {
+    public void ajouterRestaurant(restaurant r) throws SQLException {
         String req = "INSERT INTO `restaurant` (`nom`,`specialite`,`adresse`,`email`,`num_tel`) VALUE (?,?,?,?,?)";
         try{
         prst= con.prepareStatement(req);
@@ -47,7 +47,7 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
     }
 
     @Override
-    public void modifier(long id, restaurant r) throws SQLException {
+    public void modifierRestaurant(long id, restaurant r) throws SQLException {
        String req = "UPDATE `restaurant` SET "
                 +"`nom`=?,`specialite`=?,`adresse`=?,`email`=?,`num_tel`=?"
                 + "WHERE id_rest = '" +id+ "'";
@@ -69,7 +69,7 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
     }
 
     @Override
-    public void supprimer(long id) throws SQLException {
+    public void supprimerRestaurant(long id) throws SQLException {
         String delete= "DELETE FROM restaurant where id_rest= ?";
         try {
             prst=con.prepareStatement(delete);
@@ -83,7 +83,7 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
     }
 
     @Override
-    public List<restaurant> afficher() {
+    public List<restaurant> afficherRestaurant() {
       List<restaurant>resList;
       resList=new ArrayList<>();
       String select="SELECT * FROM `restaurant`";

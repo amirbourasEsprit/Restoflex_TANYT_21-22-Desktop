@@ -17,6 +17,8 @@ public class Commande {
     private float quantite;
     private long id_utilisateur;
     private long id_produit;
+    
+    public produit_restaurant produit;
 
     public Commande() {
     }

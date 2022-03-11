@@ -23,6 +23,11 @@ public class fournisseur_restaurant {
         this.id_fournisseur = id_fournisseur;
     }
 
+    public fournisseur_restaurant(long id_rest, long id_fournisseur) {
+        this.id_rest = id_rest;
+        this.id_fournisseur = id_fournisseur;
+    }
+
     public long getId_fournisseur_restaurant() {
         return id_fournisseur_restaurant;
     }
