@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/service/CommandeCRUD.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>191</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/gui/mainfx.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/controllers/mailUtil.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/controllers/CategorieController.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/entities/Conge.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/test/MainClass.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/controllers/AjoutercommandeController.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/entities/produit_restaurant.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/entities/fournisseur.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/service/CommandeCRUD.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/controllers/CommandeGerantController.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/service/CategorieCRUD.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/entities/Commande.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/util/MyConnection.java</file>
+            <file>file:/C:/Users/Thinkpad/Downloads/Pi_DEV_TANYT_21-22/Pi_DEV_TANYT_21-22/src/entities/categorie.java</file>
+        </group>
+    </open-files>
+</project-private>
