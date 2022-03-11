@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="contentArea" prefHeight="835.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dashboard_Admin_restoflexController">
+   <left>
+      <AnchorPane prefHeight="835.0" prefWidth="258.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER_LEFT" maxHeight="835.0" prefHeight="835.0" prefWidth="259.0" styleClass="white-pane" stylesheets="@styles.css">
+               <children>
+                  <ImageView fitHeight="199.0" fitWidth="203.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                     <image>
+                        <Image url="@../image/1%20(1).png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="27.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox prefHeight="69.0" prefWidth="259.0" VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#res_btn" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Restaurants" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/fork.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#fournisseur_resto" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Fournisseurs" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/packages.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#role_restoflex" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Rôles           " VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/settingsrole.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <HBox prefHeight="214.0" prefWidth="259.0" />
+                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="259.0">
+                     <children>
+                        <Separator prefHeight="0.0" prefWidth="329.0" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btn_Logout" mnemonicParsing="false" onAction="#Logout" prefHeight="83.0" prefWidth="259.0" styleClass="btn-dashborad" text="Déconnecter" underline="true" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <Pane accessibleRoleDescription="Logout" prefHeight="835.0" prefWidth="1200.0" styleClass="pane-dashborad" stylesheets="@styles.css" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

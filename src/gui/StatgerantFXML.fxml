@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="830.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatgerantFXMLController">
+   <children>
+      <PieChart fx:id="statUers" layoutX="277.0" layoutY="92.0" prefHeight="647.0" prefWidth="647.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="468.0" layoutY="12.0" prefHeight="55.0" prefWidth="264.0" text="Statistique" textFill="#0d3b6a" underline="true">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

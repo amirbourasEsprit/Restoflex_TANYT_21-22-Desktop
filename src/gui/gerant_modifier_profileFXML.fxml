@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="profil_greant" prefHeight="830.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Gerant_modifier_profileFXMLController">
+   <children>
+      <Separator layoutX="76.0" layoutY="290.0" prefHeight="12.0" prefWidth="1048.0" />
+      <Label layoutX="527.0" layoutY="325.0" text="Mon restaurant" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="544.0" layoutY="44.0" text="Mon Profile" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom_rest" layoutX="374.0" layoutY="466.0" prefHeight="31.0" prefWidth="151.0" stylesheets="@styles.css" />
+      <TextField fx:id="Email_rest" layoutX="674.0" layoutY="465.0" prefHeight="31.0" prefWidth="151.0" />
+      <TextField fx:id="spec_rest" layoutX="374.0" layoutY="576.0" prefHeight="31.0" prefWidth="151.0" />
+      <TextField fx:id="adresse_rest" layoutX="674.0" layoutY="574.0" prefHeight="31.0" prefWidth="151.0" />
+      <TextField fx:id="tel_rest" layoutX="374.0" layoutY="693.0" prefHeight="31.0" prefWidth="151.0" />
+      <Button fx:id="udp_rest_btn" layoutX="889.0" layoutY="751.0" mnemonicParsing="false" onAction="#update_rest" prefHeight="51.0" prefWidth="197.0" styleClass="blue-btn" text="Modifier Mon restaurant" />
+      <Label fx:id="nom_res_lab" layoutX="376.0" layoutY="439.0" text="Nom" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="adresse_res_lab" layoutX="676.0" layoutY="547.0" text="Adresse" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="spec_res_lab" layoutX="376.0" layoutY="549.0" text="Spécialité" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="tel_res_lab" layoutX="376.0" layoutY="666.0" text="Télèphone" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="email_res_lab" layoutX="676.0" layoutY="438.0" text="Email" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="adresse_ger" layoutX="928.0" layoutY="156.0" prefHeight="31.0" prefWidth="151.0" stylesheets="@styles.css" />
+      <TextField fx:id="tel_ger" layoutX="728.0" layoutY="156.0" prefHeight="31.0" prefWidth="151.0" stylesheets="@styles.css" />
+      <TextField fx:id="nom_ger" layoutX="114.0" layoutY="156.0" prefHeight="31.0" prefWidth="151.0" stylesheets="@styles.css" />
+      <Label fx:id="nom_ger_lab" layoutX="114.0" layoutY="126.0" text="Nom" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="tel_ger_lab" layoutX="728.0" layoutY="126.0" text="Télèphone" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="adresse_ger_lab" layoutX="928.0" layoutY="126.0" text="Adresse" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="udp_ger_btn" layoutX="901.0" layoutY="227.0" mnemonicParsing="false" onAction="#update_ger" prefHeight="51.0" prefWidth="178.0" styleClass="blue-btn" text="Modifier Mon profile" />
+      <TextField fx:id="prenom_ger" layoutX="316.0" layoutY="156.0" prefHeight="31.0" prefWidth="151.0" stylesheets="@styles.css" />
+      <Label fx:id="prenom_ger_lab" layoutX="316.0" layoutY="126.0" text="Prénom" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="pwd_ger_lab" layoutX="527.0" layoutY="126.0" prefHeight="30.0" prefWidth="133.0" text="Mot de passe" textFill="#0d3b6a">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="pwd_ger" layoutX="525.0" layoutY="156.0" prefHeight="31.0" prefWidth="151.0" />
+      <Button layoutX="1157.0" layoutY="38.0" mnemonicParsing="false" onAction="#close_window" styleClass="trans-btn-red-border" text="X" textFill="#f20606">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

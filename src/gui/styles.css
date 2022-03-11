@@ -1,0 +1,67 @@
+.parent{
+    -fx-background-color:transparent;
+}
+.pane{
+    -fx-background-color:#1e85f1;
+}
+.pane-dashborad{
+    -fx-background-color:#ffffff;
+}
+.trans-btn-white-border{
+    -fx-background-color:transparent;
+    -fx-background-radius:5px;
+    -fx-border-color:#cccccc;
+    -fx-border-radius:5px;
+    -fx-border-width:1px;
+    -fx-text-fill:whitesmoke;
+}
+.trans-btn-red-border:focused {
+    -fx-background-color:transparent;
+    -fx-background-radius:5px;
+    -fx-border-color:#cccccc;
+    -fx-border-radius:5px;
+    -fx-border-width:1px;
+    -fx-text-fill:red;
+    
+}
+.white-pane{
+    -fx-background-color:#0D3B6A;
+}
+.blue-panel{
+    -fx-background-color:#0D3B6A;
+}
+.tf_box{
+     -fx-background-color:transparent;
+     -fx-border-color:#ffffff;
+     -fx-border-width: 0px 0px 0.5px 0px;
+     -fx-text-fill:#ffffff;
+}
+.tf{
+      -fx-background-color:transparent;
+}
+.blue-btn{
+    -fx-background-color:#2196f3 ;
+    -fx-background-radius:5px;
+    -fx-text-fill:#ffffff;
+
+}
+.blue-btn:hover{
+    -fx-background-color:#0d3baf;
+    
+}
+.blue-btn:pressed{
+    -fx-background-color:#2196f3;
+}
+.btn-dashborad{
+    -fx-background-color:#0D3B6A;
+    -fx-background-radius:5px;
+    -fx-text-fill:#ffffff;
+}
+.btn-dashborad:hover{
+    -fx-background-color:#0d3baf;
+}
+.btn-dashborad:pressed{
+    -fx-background-color:#0d3be7
+}
+
+.choice-box > .label { -fx-text-fill: white; }
