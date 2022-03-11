@@ -99,7 +99,7 @@ public class fournisseur {
 
     @Override
     public String toString() {
-        return "fournisseur{" + "id_fournisseur=" + id_fournisseur + ", nom_fournisseur=" + nom_fournisseur + ", matricule_fiscale=" + matricule_fiscale + ", domaine_fournisseur=" + domaine_fournisseur + ", num_tel_fournisseur=" + num_tel_fournisseur + ", email_fournisseur=" + email_fournisseur + ", adresse_fournisseur=" + adresse_fournisseur + ", logo=" + logo + '}';
+        return  nom_fournisseur;
     }
     
     
