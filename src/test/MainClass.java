@@ -5,48 +5,55 @@
  */
 package test;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-
+import Service.ServiceNotification;
+import entities.reclamation;
+import entities.type_reclamation;
+import java.util.*;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import service.NotificationService;
+import service.ReclamationService;
+import service.type_reclamationService;
 /**
  *
- * @author Thinkpad
+ * @author boura
  */
-public class MainClass extends Application {
-      @Override
-    public void start(Stage primaryStage) {
+public class MainClass {
     
-        
-        try {
-            //  Scene scene = new Scene(root, 300, 250);
-       //Parent root = FXMLLoader.load(getClass().getResource("../GUI/ajoutercommande.fxml"));
-      Parent root = FXMLLoader.load(getClass().getResource("../GUI/categorie.fxml"));
-            
-            Scene scene = new Scene(root);
-            primaryStage.setTitle("Gestion commande");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
+    //private static Object date1;
+    public static void main(String[] args) throws SQLException, ParseException {
+    ReclamationService RS= new ReclamationService();
+   //java.util.Date date=new java.util.Date();
+   //java.sql.Date sqlDate=new java.sql.Date(date.getTime());
+    //reclamation r1=new reclamation("Tas", "dsjhdsoifzeh", "traitée",sqlDate,1,3);
+      //RS.ajouterReclamation(r1);
+     //RS.supprimerReclamation(4);
+    // RS.modifierReclamation(4, r1);
+   //System.out.println(RS.afficherReclamation());
+   //RS.chercherPrenomGerant(2);
+  // RS.chercherNomFournisseur(2);
+        ServiceNotification ns =new ServiceNotification();
+        ns.Notification("test","test");
+    //type_reclamationService TRS=new type_reclamationService();
+    //type_reclamation tr1=new type_reclamation("produit top");
+  // TRS.ajouterTypeReclamation(tr1);
+ // TRS.supprimerTypeReclamation(2);
+ //TRS.modifierTypeReclamation(3, tr1);
+ //System.out.println(TRS.afficherTypeReclamation());
     }
 }
+           
+      
 
+
+
+
+
+
+
+
+
+ 
+       
+  

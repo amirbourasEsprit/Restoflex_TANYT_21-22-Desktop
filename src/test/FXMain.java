@@ -13,30 +13,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
  *
- * @author Yosr Belaam
+ * @author Asus
  */
 public class FXMain extends Application {
-
+    
     @Override
-    public void start(Stage stage) throws IOException {
-        //Parent root = FXMLLoader.load(getClass().getResource("../gui/Ajout_CongeFXML.fxml"));
-        //stage.setTitle("Ajout Congé");
-        Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_Conge_Gerant.fxml"));
-        stage.setTitle("Afficher Congé Gerant");
-        //Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_Conge_Emp.fxml"));
-        //stage.setTitle("Afficher Congé Employé");
-        //Parent root = FXMLLoader.load(getClass().getResource("../gui/Ajout_Type_CongeFXML.fxml"));
-        //stage.setTitle("Ajout Type Congé");
-        //Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_Type_CongeFXML.fxml"));
-        //stage.setTitle("Afficher Type Congé");
-        stage.setScene(new Scene(root, 1300, 700));
-        stage.show();
+    public void start(Stage stage) {
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/TypeRecFXML.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -45,5 +40,5 @@ public class FXMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }

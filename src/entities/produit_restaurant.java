@@ -12,30 +12,20 @@ package entities;
 public class produit_restaurant {
     private long id_pdrest;
     private String nom_pdt;
-    private float quantit_pdt;
+    private String quantit_pdt;
     private long id_rest;
-
-    public String getCateg() {
-        return categ;
-    }
-
-    public void setCateg(String categ) {
-        this.categ = categ;
-    }
-    private String categ;
+    private long id_sctg;
 
     public produit_restaurant() {
     }
 
-    public produit_restaurant(long id_pdrest, String nom_pdt, float quantit_pdt, long id_rest, String categ) {
+    public produit_restaurant(long id_pdrest, String nom_pdt, String quantit_pdt, long id_rest, long id_sctg) {
         this.id_pdrest = id_pdrest;
         this.nom_pdt = nom_pdt;
         this.quantit_pdt = quantit_pdt;
         this.id_rest = id_rest;
-        this.categ = categ;
+        this.id_sctg = id_sctg;
     }
-
-    
 
     public long getId_pdrest() {
         return id_pdrest;
@@ -45,7 +35,7 @@ public class produit_restaurant {
         return nom_pdt;
     }
 
-    public float getQuantit_pdt() {
+    public String getQuantit_pdt() {
         return quantit_pdt;
     }
 
@@ -53,7 +43,9 @@ public class produit_restaurant {
         return id_rest;
     }
 
-    
+    public long getId_sctg() {
+        return id_sctg;
+    }
 
     public void setId_pdrest(long id_pdrest) {
         this.id_pdrest = id_pdrest;
@@ -63,7 +55,7 @@ public class produit_restaurant {
         this.nom_pdt = nom_pdt;
     }
 
-    public void setQuantit_pdt(float quantit_pdt) {
+    public void setQuantit_pdt(String quantit_pdt) {
         this.quantit_pdt = quantit_pdt;
     }
 
@@ -71,11 +63,13 @@ public class produit_restaurant {
         this.id_rest = id_rest;
     }
 
-   
+    public void setId_sctg(long id_sctg) {
+        this.id_sctg = id_sctg;
+    }
 
     @Override
     public String toString() {
-        return nom_pdt;
+        return "produit_restaurant{" + "id_pdrest=" + id_pdrest + ", nom_pdt=" + nom_pdt + ", quantit_pdt=" + quantit_pdt + ", id_rest=" + id_rest + ", id_sctg=" + id_sctg + '}';
     }
     
 }

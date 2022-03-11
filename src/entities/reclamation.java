@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package entities;
-import java.util.*;
+
+import java.sql.Date;
+
+
 /**
  *
  * @author boura
@@ -30,6 +33,17 @@ public class reclamation {
         this.id_type_reclamation = id_type_reclamation;
         this.id_utilisateur = id_utilisateur;
     }
+
+    public reclamation(String destinataire, String description, String statut_reclamation, Date date_reclamation, long id_type_reclamation, long id_utilisateur) {
+        this.destinataire = destinataire;
+        this.description = description;
+        this.statut_reclamation = statut_reclamation;
+        this.date_reclamation = date_reclamation;
+        this.id_type_reclamation = id_type_reclamation;
+        this.id_utilisateur = id_utilisateur;
+    }
+    
+    
 
     public long getNum_reclamation() {
         return num_reclamation;
