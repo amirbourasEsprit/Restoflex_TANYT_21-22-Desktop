@@ -17,16 +17,15 @@ public class MyConnection {
     public String login="root";
     public String pwd="";
     Connection cnx;
-    private static MyConnection instance; //methodepouretablirlaconnexionavecbdd
+    private static MyConnection instance;
     
     private MyConnection(){
         try {
-            cnx= DriverManager.getConnection(url, login, pwd);//on met les attributs bdd pour ETABLIR CONNEXION
+            cnx= DriverManager.getConnection(url, login, pwd);
             System.out.println("connexion établie!");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        //driver: convertir les requetes de jdbc en des req sgbd
         
                 
     }

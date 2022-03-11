@@ -17,7 +17,7 @@ public class fournisseur {
     private String num_tel_fournisseur;
     private String email_fournisseur;
     private String adresse_fournisseur;
-    private String logo;
+   private String logo;
 
     public fournisseur() {
     }
@@ -31,6 +31,16 @@ public class fournisseur {
         this.email_fournisseur = email_fournisseur;
         this.adresse_fournisseur = adresse_fournisseur;
         this.logo = logo;
+    }
+
+    public fournisseur(String nom_fournisseur, String matricule_fiscale, String domaine_fournisseur, String num_tel_fournisseur, String email_fournisseur, String adresse_fournisseur,String logo) {
+        this.nom_fournisseur = nom_fournisseur;
+        this.matricule_fiscale = matricule_fiscale;
+        this.domaine_fournisseur = domaine_fournisseur;
+        this.num_tel_fournisseur = num_tel_fournisseur;
+        this.email_fournisseur = email_fournisseur;
+        this.adresse_fournisseur = adresse_fournisseur;
+         this.logo = logo;
     }
 
     public int getId_fournisseur() {
@@ -93,7 +103,7 @@ public class fournisseur {
         this.adresse_fournisseur = adresse_fournisseur;
     }
 
-    public void setLogo(String logo) {
+  public void setLogo(String logo) {
         this.logo = logo;
     }
 
@@ -101,6 +111,9 @@ public class fournisseur {
     public String toString() {
         return "fournisseur{" + "id_fournisseur=" + id_fournisseur + ", nom_fournisseur=" + nom_fournisseur + ", matricule_fiscale=" + matricule_fiscale + ", domaine_fournisseur=" + domaine_fournisseur + ", num_tel_fournisseur=" + num_tel_fournisseur + ", email_fournisseur=" + email_fournisseur + ", adresse_fournisseur=" + adresse_fournisseur + ", logo=" + logo + '}';
     }
+
+
+    
     
     
 }

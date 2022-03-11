@@ -14,19 +14,19 @@ public class Conge {
     private Date date_deb;
     private Date date_fin;
     private long sold_restant;
-    private String etat;
+    private String validation;
     private long id_type_conge;
     private long id_utilisateur;
 
     public Conge() {
     }
 
-    public Conge(long id_conge, Date date_deb, Date date_fin, long sold_restant, String etat, long id_type_conge, long id_utilisateur) {
+    public Conge(long id_conge, Date date_deb, Date date_fin, long sold_restant, String validation, long id_type_conge, long id_utilisateur) {
         this.id_conge = id_conge;
         this.date_deb = date_deb;
         this.date_fin = date_fin;
         this.sold_restant = sold_restant;
-        this.etat = etat;
+        this.validation = validation;
         this.id_type_conge = id_type_conge;
         this.id_utilisateur = id_utilisateur;
     }
@@ -47,8 +47,8 @@ public class Conge {
         return sold_restant;
     }
 
-    public String getEtat() {
-        return etat;
+    public String getValidation() {
+        return validation;
     }
 
     public long getId_type_conge() {
@@ -75,8 +75,8 @@ public class Conge {
         this.sold_restant = sold_restant;
     }
 
-    public void setEtat(String etat) {
-        this.etat = etat;
+    public void setValidation(String validation) {
+        this.validation = validation;
     }
 
     public void setId_type_conge(long id_type_conge) {
@@ -89,7 +89,7 @@ public class Conge {
 
     @Override
     public String toString() {
-        return "Conge{" + "id_conge=" + id_conge + ", date_deb=" + date_deb + ", date_fin=" + date_fin + ", sold_restant=" + sold_restant + ", etat=" + etat + ", id_type_conge=" + id_type_conge + ", id_utilisateur=" + id_utilisateur + '}';
+        return "Conge{" + "id_conge=" + id_conge + ", date_deb=" + date_deb + ", date_fin=" + date_fin + ", sold_restant=" + sold_restant + ", validation=" + validation + ", id_type_conge=" + id_type_conge + ", id_utilisateur=" + id_utilisateur + '}';
     }
     
 }

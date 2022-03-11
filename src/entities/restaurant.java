@@ -92,7 +92,7 @@ public class restaurant {
 
     @Override
     public String toString() {
-        return  nom  ;
+        return "restaurant{" + "id_rest=" + id_rest + ", nom=" + nom + ", specialite=" + specialite + ", adresse=" + adresse + ", email=" + email + ", num_tel=" + num_tel + '}';
     }
     
 }

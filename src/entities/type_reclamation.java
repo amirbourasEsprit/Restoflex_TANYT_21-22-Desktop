@@ -16,10 +16,6 @@ public class type_reclamation {
     public type_reclamation() {
     }
 
-    public type_reclamation(String nom_type_reclamation) {
-        this.nom_type_reclamation = nom_type_reclamation;
-    }
-
     public type_reclamation(long id_type_reclamation, String nom_type_reclamation) {
         this.id_type_reclamation = id_type_reclamation;
         this.nom_type_reclamation = nom_type_reclamation;
@@ -43,7 +39,7 @@ public class type_reclamation {
 
     @Override
     public String toString() {
-        return  nom_type_reclamation;
+        return "type_reclamation{" + "id_type_reclamation=" + id_type_reclamation + ", nom_type_reclamation=" + nom_type_reclamation + '}';
     }
     
 }
