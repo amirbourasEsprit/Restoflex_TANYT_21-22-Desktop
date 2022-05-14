@@ -23,7 +23,7 @@ public interface I_ReclamationService<T>{
         List<reclamation> afficherReclamation();
         List<reclamation> afficherReclamationParId(int id);
         public utilisateur chercherPrenomGerant(long idRest);        
-        public List<restaurant> chercherRestaurant(int id,String cin);
+        public List<restaurant> chercherRestaurant(int id,String cin );
         public List <utilisateur> chercherNomFournisseur(long id);
         public List<utilisateur> chercherNomEmploye (long id); 
         public List<reclamation> rechercherParDate(int id_rest_current,String recherche);

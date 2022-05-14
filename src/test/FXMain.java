@@ -6,8 +6,6 @@
 package test;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,25 +14,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
- * @author Nesrine
+ * @author boura
  */
 public class FXMain extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/CmdFournisseur.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(FXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void start(Stage stage) throws IOException {
+        Parent root= FXMLLoader.load(getClass().getResource("../GUI/LoginRestoflex.fxml"));
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
     }
 
     /**

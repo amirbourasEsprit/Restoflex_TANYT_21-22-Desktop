@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Controller;
 
 import entities.type_conge;
 import java.io.IOException;
@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import service.TypeCongeService;
@@ -70,6 +71,8 @@ public class Afficher_Type_CongeFXMLController implements Initializable {
     private TableColumn<type_conge,String> nom_Tcong;
     @FXML
     private Label Titre;
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -105,11 +108,10 @@ public class Afficher_Type_CongeFXMLController implements Initializable {
     }
     @FXML
     private void ajouter(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Ajout_Type_CongeFXML.fxml"));
-        stage.setTitle("Ajout Type Congé");
-        stage.setScene(new Scene(root, 1000, 700));
-        stage.show();
+      
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("../GUI/Ajout_Type_CongeFXML.fxml"));
+        Parent root = loader.load();
+        pane.getChildren().add(root);
     }
 
     @FXML

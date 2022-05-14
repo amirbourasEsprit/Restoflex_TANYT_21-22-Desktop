@@ -8,17 +8,13 @@ package service;
 import interfaces.I_commande;
 import entities.Commande;
 import entities.fournisseur;
-import entities.produit_restaurant;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.MyConnection;
@@ -88,7 +84,23 @@ public class CommandeCRUD implements I_commande <Commande> {
            
            // pst.setLong(4,id);
             pst.executeUpdate();
+           // System.out.println("Commande modifier");
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
 
+    }
+         public void modifierCommandeStatut(Commande c,int id) {
+        String req = "update commande set statut=? where id_cmd= '"+id+"'";
+
+        try {
+            pst = conn.prepareStatement(req);
+            pst.setString(1, c.getStatut());
+         
+            System.out.println("Statut commande modifier");
+           // pst.setLong(4,id);
+            pst.executeUpdate();
+           // System.out.println("Commande modifier");
         } catch (SQLException ex) {
             System.err.print(ex.getMessage());
         }
@@ -121,12 +133,8 @@ public ObservableList<fournisseur> getfournisseur() {
             while(rs.next()){
                 fournisseur u = new fournisseur();
                 u.setId_fournisseur(rs.getInt(1));
-                u.setNom_fournisseur(rs.getString(2));
-                
-                
-                
+                u.setNom_fournisseur(rs.getString(2));  
                 categorieList.add(u);
-                System.out.println("affichage succées");
             }
 
         } catch (Exception e) {
@@ -140,7 +148,6 @@ public ObservableList<fournisseur> getfournisseur() {
       String select="SELECT c.id_cmd,c.statut,c.date_cmd,c.date_livraison,c.quantite,u.cin,p.nom_pdt,f.nom_fournisseur from commande c inner join utilisateur u on "
               + "c.id_utilisateur=u.id_utilisateur inner join produit_restaurant p on c.id_produit=p.id_pdtrest inner join fournisseur f on c.id_fournisseur=f.id_fournisseur where"
               + " c.quantite >'"+p+"'AND u.id_rest='"+current_resto_user+"'";
-       System.out.println(select);
       if(!ch.equals(""))
         select +=" and (u.cin like '"+ch+"%' or p.nom_pdt like '"+ch+"%' or f.nom_fournisseur like '"+ch+"%') "; 
         try {
@@ -156,9 +163,7 @@ public ObservableList<fournisseur> getfournisseur() {
                 u.setNomUtil(rs.getString(6));
                 u.setNomProd(rs.getString(7));
                 u.setNomFour(rs.getString(8));
-                
-                categorieList.add(u);
-                System.out.println("affichage succées");
+                categorieList.add(u);  
             }
 
         } catch (Exception e) {
@@ -195,5 +200,7 @@ public ObservableList<fournisseur> getfournisseur() {
             System.err.print(ex.getMessage());
             return -1;
         }
-    }  
+    }
+      //mail gerant de current user
+      
 }

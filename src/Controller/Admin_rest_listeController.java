@@ -182,10 +182,6 @@ public class Admin_rest_listeController implements Initializable {
     }
     }
 
-    @FXML
-    private void close_window(ActionEvent event) {
-                System.exit(0);
-    }
      private void visibility(boolean test){
     nom_rest.setVisible(test);
     nom_lab.setVisible(test);

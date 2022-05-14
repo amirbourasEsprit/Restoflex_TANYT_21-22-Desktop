@@ -130,10 +130,6 @@ public class RoleFXMLController implements Initializable {
     dg.show();
     }
 
-    @FXML
-    private void close_window(ActionEvent event) {
-        System.exit(0);
-    }
 
     @FXML
     private void show_ajout_role(ActionEvent event) {

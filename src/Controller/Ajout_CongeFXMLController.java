@@ -3,29 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Controller;
 
 import entities.Conge;
+import entities.utilisateur;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
 import service.CongeService;
 import tray.animations.AnimationType;
@@ -57,6 +66,8 @@ public class Ajout_CongeFXMLController implements Initializable {
     private TextField prenom_cong;
     @FXML
     private TextField id_emp_cong;
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -66,6 +77,13 @@ public class Ajout_CongeFXMLController implements Initializable {
         // TODO
         type_emp_cong.getItems().add("Maladie");
         type_emp_cong.getItems().add("Sans solde");
+        nom_cong.setDisable(true);
+        prenom_cong.setDisable(true);
+        prenom_cong.setText( utilisateur.current_user.getPrenom());
+        nom_cong.setText(utilisateur.current_user.getNom());
+        id_emp_cong.setText(String.valueOf(utilisateur.current_user.getId_utilisateur()));
+        
+        
     }    
         public void alert_Box(String title, String message) {
          Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -74,7 +92,7 @@ public class Ajout_CongeFXMLController implements Initializable {
          alert.show();
     }
     @FXML
-    private void Ajout_Conge(ActionEvent event) throws SQLException, FileNotFoundException {
+    private void Ajout_Conge(ActionEvent event) throws SQLException, FileNotFoundException, IOException {
         // controle de saisie
        
         if (id_emp_cong.getText().isEmpty()) {
@@ -107,8 +125,11 @@ public class Ajout_CongeFXMLController implements Initializable {
          Date d1 = c.getDate_deb();
          Date d2 = c.getDate_fin();
         int diff = diffdate(d1, d2);
-        if(diff<c.user.getSolde_conge()){
+        if(diff<utilisateur.current_user.getSolde_conge()){
+        boolean check=Suppression_Box("verification", "Vous êtes sur d\\ajouter ce congé!");
+          if(check){
         cong.ajouterConge(c);
+          }
         TrayNotification tray= new TrayNotification();
         AnimationType type = AnimationType.POPUP;
         tray.setAnimationType(type);
@@ -116,7 +137,12 @@ public class Ajout_CongeFXMLController implements Initializable {
         tray.setMessage("Congé ajouté avec succès");
         tray.setNotificationType(NotificationType.SUCCESS);
         tray.showAndDismiss(Duration.seconds(5)); 
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Afficher_Conge_Emp.fxml"));
+        Parent root = loader.load();
+        pane.getChildren().add(root);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Vous avez dépassez vote solde congé!");
         }
          }
     }
@@ -141,7 +167,27 @@ public class Ajout_CongeFXMLController implements Initializable {
     }
 
     @FXML
-    private void annuler_cong(ActionEvent event) {
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    private void annuler_cong(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Afficher_Conge_Emp.fxml"));
+       Parent root = loader.load();
+       pane.getChildren().add(root);
+    }
+
+public boolean Suppression_Box(String title, String message) {
+        boolean sortie = false;
+        Alert.AlertType Type = Alert.AlertType.CONFIRMATION;
+        Alert alert = new Alert(Type, "");
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            sortie = true;
+        } else if (result.get() == ButtonType.CANCEL) {
+            sortie = false;
+        }
+
+        return sortie;
+
     }
 }

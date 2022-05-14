@@ -9,6 +9,7 @@ import static Controller.Admin_rest_listeController.verifphone;
 import Service.MyLocation;
 import Service.ServiceNotification;
 import entities.MyAddress;
+import entities.fournisseur;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -41,6 +42,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
+import service.FournisseurService;
 import service.RoleService;
 import service.UtilisateurService;
 /**
@@ -52,9 +54,9 @@ public class SignUpController implements Initializable {
 
     @FXML
     private ChoiceBox<role> choicebox_type_user;
-    private String [] fournisseur={"mazeraa","chahia"}; 
+   // private String [] fournisseur={"mazeraa","chahia"}; 
     @FXML
-    private ChoiceBox< String > liste_four_emp;
+    private ChoiceBox< fournisseur > liste_four_emp;
     @FXML
     private ChoiceBox<restaurant> choicebox_resto;
     RestaurantService rs=new RestaurantService();
@@ -102,9 +104,11 @@ public class SignUpController implements Initializable {
         choicebox_type_user.setItems(list_role);
         choicebox_type_user.setOnAction(this::getRole);
         
-        
+        FournisseurService fs =new FournisseurService();
+        List <fournisseur> fournisseur =fs.afficherFournisseur();
         //pour le choice des fournisseurs
-        liste_four_emp.getItems().addAll(fournisseur);
+        ObservableList fournisseur_nom =FXCollections.observableArrayList(fournisseur);
+        liste_four_emp.setItems(fournisseur_nom);
         //liste_four_emp.setOnAction(this::get_id_fournisseur);
         
         //hide if he is un employees
@@ -158,22 +162,12 @@ public class SignUpController implements Initializable {
          btn_sign_up.setVisible(false);
           sn.Notification("Erreur", "vous ne pouvez pas creez un compte avec ce Rôle!");
         }
-      System.out.println(type_util);
+     // System.out.println(type_util);
     }
   public void get_id_resto(ActionEvent event){
-      System.out.println(choicebox_resto.getSelectionModel().getSelectedItem().getId_rest());
+     // System.out.println(choicebox_resto.getSelectionModel().getSelectedItem().getId_rest());
   }
-  public void get_id_fournisseur(ActionEvent event){
-     String nom_fournisseur=liste_four_emp.getValue();
-      
-     if (nom_fournisseur.equals("mazeraa")){
-      
-         System.out.println(1);
-     }else if(nom_fournisseur.equals("chahia")){
-         System.out.println(2);
-     }
-         
-  }
+ 
 
     @FXML
     private void sign_up(ActionEvent event) throws SQLException, IOException {
@@ -195,7 +189,7 @@ public class SignUpController implements Initializable {
                        if(!utilSer.test_Password(mdp.getText())){
                            alert_Box("Verifier", "votre mot de passe doit contenir au minimum 8 caractères\\n à savoir : au moins une lettre minuscule,une lettre majuscule et un chiffre");
                           }else{
-                           int fournisseur_id=2;
+                           int fournisseur_id=liste_four_emp.getSelectionModel().getSelectedItem().getId_fournisseur();
                            util.setNom(Nom.getText());
                            util.setPrenom(prenom.getText());
                            util.setEmail(Email.getText());
@@ -212,10 +206,11 @@ public class SignUpController implements Initializable {
                            try {
                                utilSer.ajouterFournisseur(util);
                                sn.Notification("Felicitation", "Vous avez creez un compte utilisateur fournisseur");
-                               mainpage();
+                               
                            } catch (SQLException e) {
                                JOptionPane.showMessageDialog(null, e);
                            }
+                           mainpage();
                           // }else{wrongSignup.setText("Choisir votre fournisseur! "); }
                    } }
                else if(role.equals("Employée")){
@@ -236,6 +231,7 @@ public class SignUpController implements Initializable {
                             util.setDate_naissance(Date.valueOf(datebirth.getValue()));
                             util.setPoste_employe(poste_emp.getText());
                             util.setStatus_compte("non_verifer");
+                            util.setSolde_conge(30);
 
                             util.setId_rest((int) choicebox_resto.getSelectionModel().getSelectedItem().getId_rest());
 
@@ -244,10 +240,11 @@ public class SignUpController implements Initializable {
                             try {
                                 utilSer.ajouterEmploye(util);
                                 sn.Notification("Felicitation", "Vous avez creez un compte employer");
-                                mainpage();
+                                
                             } catch (SQLException e) {
                                 JOptionPane.showMessageDialog(null, e);
                             }
+                            mainpage();
                          } 
                }}
                else if (role.equals("Gérant")){

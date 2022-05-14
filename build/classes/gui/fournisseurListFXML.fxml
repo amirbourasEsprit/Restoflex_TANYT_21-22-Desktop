@@ -7,32 +7,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="831.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FournisseurListFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="831.0" prefWidth="1200.0" style="-fx-background-color: white;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FournisseurListFXMLController">
    <children>
-      <TableView fx:id="tv_fourn" layoutX="54.0" layoutY="106.0" onMouseClicked="#temp_tab_click" prefHeight="534.0" prefWidth="1100.0">
+      <TableView fx:id="tv_fourn" layoutX="54.0" layoutY="188.0" onMouseClicked="#temp_tab_click" prefHeight="452.0" prefWidth="1100.0" stylesheets="@CSSN.css">
         <columns>
-            <TableColumn fx:id="nom__four_col" prefWidth="164.0" text="nom fournisseur" />
+            <TableColumn fx:id="nom__four_col" prefWidth="164.0" text="Nom fournisseur" />
           <TableColumn fx:id="nom_four_col" prefWidth="95.0" text="Nom" />
-          <TableColumn fx:id="prenom_four_col" prefWidth="113.0" text="Prenom" />
-            <TableColumn fx:id="cin_four_col" prefWidth="105.0" text="Cin" />
-            <TableColumn fx:id="email_four_col" prefWidth="94.0" text="email" />
-            <TableColumn fx:id="tel_four_col" prefWidth="141.0" text="numéro tel" />
-            <TableColumn fx:id="date_four_col" prefWidth="138.0" text="date de naissance" />
-            <TableColumn fx:id="adresse_four_col" prefWidth="122.0" text="adresse" />
-            <TableColumn fx:id="status_four_col" prefWidth="122.0" text="Status" />
+          <TableColumn fx:id="prenom_four_col" prefWidth="113.0" text="Prénom" />
+            <TableColumn fx:id="cin_four_col" prefWidth="105.0" text="CIN" />
+            <TableColumn fx:id="email_four_col" prefWidth="94.0" text="Email" />
+            <TableColumn fx:id="tel_four_col" prefWidth="141.0" text="Téléphone" />
+            <TableColumn fx:id="date_four_col" prefWidth="138.0" text="Date de naissance" />
+            <TableColumn fx:id="adresse_four_col" prefWidth="122.0" text="Adresse" />
+            <TableColumn fx:id="status_four_col" prefWidth="127.0" text="Statut" />
         </columns>
       </TableView>
-      <Button fx:id="supprim_four_btn" layoutX="985.0" layoutY="763.0" mnemonicParsing="false" onAction="#supprimer_four" prefHeight="53.0" prefWidth="157.0" styleClass="blue-btn" text="Supprimer" />
-      <Button layoutX="1157.0" layoutY="38.0" mnemonicParsing="false" onAction="#close_window" styleClass="trans-btn-red-border" text="X" textFill="#f20606">
+      <Button fx:id="supprim_four_btn" layoutX="985.0" layoutY="763.0" mnemonicParsing="false" onAction="#supprimer_four" prefHeight="53.0" prefWidth="157.0" style="-fx-background-color: #1e85f1; -fx-border-radius: 8px;" text="Supprimer" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="11.0" />
-         </font>
-      </Button>
+            <Font name="Cambria Bold" size="18.0" />
+         </font></Button>
       <Button fx:id="verifierFournisseur" layoutX="807.0" layoutY="763.0" mnemonicParsing="false" onAction="#verifierFournisseur" prefHeight="53.0" prefWidth="157.0" styleClass="blue-btn" text="Verifier" />
-      <Button fx:id="nonVerifierFournisseur" layoutX="807.0" layoutY="763.0" mnemonicParsing="false" onAction="#nonVerifierFournisseur" prefHeight="53.0" prefWidth="157.0" styleClass="blue-btn" text="Non verifier" />
-      <Label layoutX="462.0" layoutY="12.0" text="Liste Fournisseur" textFill="#0d3b6a" underline="true">
+      <Button fx:id="nonVerifierFournisseur" layoutX="807.0" layoutY="763.0" mnemonicParsing="false" onAction="#nonVerifierFournisseur" prefHeight="53.0" prefWidth="157.0" style="-fx-background-color: #1e85f1; -fx-border-radius: 8px;" text="Non verifier" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="Cambria Bold" size="18.0" />
+         </font></Button>
+      <Label layoutX="462.0" layoutY="33.0" text="Liste Fournisseur">
+         <font>
+            <Font name="Cambria Bold" size="35.0" />
          </font>
       </Label>
    </children>

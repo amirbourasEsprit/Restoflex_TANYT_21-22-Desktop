@@ -350,12 +350,12 @@ public class UtilisateurService implements I_utilisateur <utilisateur> {
                 u.setId_rest(rs.getInt(14));
                 u.setId_fournisseur(rs.getInt(15));
                 u.setStatus_compte(rs.getString(16));
-                r.setId_rest(rs.getInt(17));
-                r.setNom(rs.getString(18));
-                r.setSpecialite(rs.getString(19));
-                r.setAdresse(rs.getString(20));
-                r.setEmail(rs.getString(21));
-                r.setNum_tel(rs.getString(22));
+                r.setId_rest(rs.getInt(19));
+                r.setNom(rs.getString(20));
+                r.setSpecialite(rs.getString(21));
+                r.setAdresse(rs.getString(22));
+                r.setEmail(rs.getString(23));
+                r.setNum_tel(rs.getString(24));
                 u.restaurant=r;
                 utilList.add(u);
                 System.out.println("affichage succées");
@@ -466,6 +466,25 @@ public class UtilisateurService implements I_utilisateur <utilisateur> {
         }
         return false;
 
+    }
+     public String mailGerant(int id_rest_current) {
+         String mail_gerant="";
+        //ObservableList<utilisateur>utilList=FXCollections.observableArrayList();
+         String select="SELECT u.email FROM utilisateur u WHERE id_role=1 AND id_rest= "+id_rest_current;
+        try {
+            ste= con.createStatement();
+            ResultSet rs = ste.executeQuery(select);
+            while(rs.next()){
+                utilisateur u = new utilisateur();
+               u.setEmail(rs.getString(1));                
+               mail_gerant=u.getEmail();
+                System.out.println("affichage succées");
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return mail_gerant;
     }
     
 }

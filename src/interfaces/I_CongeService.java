@@ -10,15 +10,12 @@ import java.util.List;
 
 /**
  *
- * @author boura
+ * @author Yosr Belaam
  */
-public interface I_Role <T>{
- 
-        void ajouter(T entity) throws SQLException;
-        void modifier (long id,T entity)throws SQLException;
-        void supprimer (long id) throws SQLException;
-        List<T> afficher();
+public interface I_CongeService <T>  {
+      void ajouterConge(T entity) throws SQLException;;
+        void modifierConge (T entity)throws SQLException;
+        void supprimerConge (int id) throws SQLException;
+        List<T> afficherConge(int id);
         
 }
-
-  

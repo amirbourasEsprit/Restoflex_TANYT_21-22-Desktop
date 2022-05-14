@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
-import static controllers.ReclamationFXMLController.r;
+import static Controller.ReclamationFXMLController.r;
 import entities.reclamation;
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +33,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import service.NotificationService;
+import Service.ServiceNotification;
+import entities.utilisateur;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import service.ReclamationService;
 
 /**
@@ -59,19 +64,20 @@ public class ReclamationRecuController implements Initializable {
     private DatePicker recherche;
     @FXML
     private Button traité;
+    utilisateur util=utilisateur.current_user;
 
     /**
      * Initializes the controller class.
      */
     static reclamation r;
     ObservableList<reclamation> listR ;
-     int current_user = 8;
-     String UserName ="Salma";
-     int role =3;
-    @FXML
-    private Button btnRetour;
+     int current_user = util.getId_utilisateur();
+     String UserName =util.getPrenom();
+     int role =util.getId_role();
     @FXML
     private Button btnDetails;
+    @FXML
+    private AnchorPane pane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -96,8 +102,18 @@ public class ReclamationRecuController implements Initializable {
             listR.add(j);
         });
        }
+        System.out.println(listR);
         
-         ColDest.setCellValueFactory(new PropertyValueFactory<>("destinataire"));
+         ColDest.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<reclamation,String>,ObservableValue<String>>(){
+            
+            
+            
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<reclamation,String> param){
+            return new SimpleObjectProperty(param.getValue().utilisateur.getPrenom()+" "+param.getValue().utilisateur.getNom());
+           
+            }
+        } );
          ColStat.setCellValueFactory(new PropertyValueFactory<>("statut_reclamation"));
          ColDate.setCellValueFactory(new PropertyValueFactory<>("date_reclamation"));
         
@@ -119,7 +135,7 @@ public class ReclamationRecuController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ReclamationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new NotificationService().Notification("Sucées", "Reclamation traitée" );
+        new ServiceNotification().Notification("Sucées", "Reclamation traitée" );
         ActualiserTable();
         
     }
@@ -144,7 +160,16 @@ public class ReclamationRecuController implements Initializable {
         });
        }
         
-         ColDest.setCellValueFactory(new PropertyValueFactory<>("destinataire"));
+        ColDest.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<reclamation,String>,ObservableValue<String>>(){
+            
+            
+            
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<reclamation,String> param){
+            return new SimpleObjectProperty(param.getValue().utilisateur.getPrenom()+" "+param.getValue().utilisateur.getNom());
+           
+            }
+        } );
          ColStat.setCellValueFactory(new PropertyValueFactory<>("statut_reclamation"));
          ColDate.setCellValueFactory(new PropertyValueFactory<>("date_reclamation"));
         
@@ -197,7 +222,16 @@ public class ReclamationRecuController implements Initializable {
 
         ObservableList<reclamation> data = FXCollections.observableArrayList(rs.rechercherParDate(current_user,DPCurrentDate1.toString()));
         // TODO
-          ColDest.setCellValueFactory(new PropertyValueFactory<>("destinataire"));
+         ColDest.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<reclamation,String>,ObservableValue<String>>(){
+            
+            
+            
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<reclamation,String> param){
+            return new SimpleObjectProperty(param.getValue().utilisateur.getPrenom()+" "+param.getValue().utilisateur.getNom());
+           
+            }
+        } );
          ColStat.setCellValueFactory(new PropertyValueFactory<>("statut_reclamation"));
          ColDate.setCellValueFactory(new PropertyValueFactory<>("date_reclamation"));
         
@@ -207,47 +241,30 @@ public class ReclamationRecuController implements Initializable {
     @FXML
     private void btnReclamationtraite(ActionEvent event) {
          try {
-            traité.getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/ReclamationTraite.fxml"));
-            Stage mainStage= new Stage();
-            Scene scene = new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
+           // traité.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ReclamationTraite.fxml"));
+             Parent root = loader.load();
+             pane.getChildren().add(root);
             
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    @FXML
-    private void retour(ActionEvent event) {
-         try {
-            traité.getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/ReclamationFXML.fxml"));
-            Stage mainStage= new Stage();
-            Scene scene = new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-            
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+   
 
     @FXML
     private void details(ActionEvent event) {
         try {
                r =tableRec.getSelectionModel().getSelectedItem();
-          
+            System.err.println(r);
             FXMLLoader loader1 = new FXMLLoader();
             loader1.setLocation(getClass().getResource("../gui/DetailsRecFXML.fxml"));
 
-            Parent parent = (Parent) loader1.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(parent));
-            stage.show();
+            Parent root = loader1.load();
+             pane.getChildren().add(root);
             DetailsRecFXMLController details = loader1.getController();
-            details.setReservation(r);
+            details.setReservation1(r);
             
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

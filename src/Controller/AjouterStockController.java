@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import entities.stock;
+import entities.utilisateur;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -43,7 +44,7 @@ public class AjouterStockController implements Initializable {
     StockService stk = new StockService();
     @FXML
     private Button Cancel;
-  
+  utilisateur util =utilisateur.current_user;
 
     /**
      * Initializes the controller class.
@@ -61,7 +62,7 @@ public class AjouterStockController implements Initializable {
 
     @FXML
     private void ajouterStock(ActionEvent event) throws SQLException {
-        int current_user=1;//current_user
+        int current_user=util.getId_fournisseur();//current_user
         stock st= new stock();
         if (nom_stock.getText().isEmpty()||prix_unitaire.getText().isEmpty()||quantite.getText().isEmpty() )
         {Alert alert = new Alert (Alert.AlertType.WARNING);
@@ -82,7 +83,7 @@ public class AjouterStockController implements Initializable {
            stk.ajouterStock(st);
    
     JOptionPane.showMessageDialog(null,"le produit a été ajouté avec succes");
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Stock.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Dashboard_FournFXML.fxml"));
      Parent root = loader.load();
             nom_stock.getScene().setRoot(root);
     }catch(Exception e)
@@ -94,7 +95,7 @@ public class AjouterStockController implements Initializable {
     @FXML
     private void Cancel(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Stock.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Dashboard_FournFXML.fxml"));
             Parent root = loader.load();
             nom_stock.getScene().setRoot(root);
         } catch (IOException ex) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -25,17 +25,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.FactureService;
@@ -94,7 +90,7 @@ public class AjoutFactureController implements Initializable {
        
         Fc.setTitle("Download File");
         Fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
-        Fc.setInitialDirectory(new File("C:\\Users\\Nesrine\\Desktop\\FacturePDF"));
+        Fc.setInitialDirectory(new File("C:\\Users\\boura\\Documents\\NetBeansProjects\\integration_TANYT_pi\\src\\FacturePDF"));
        File selectedFile = Fc.showSaveDialog(new Stage());
         
         /////////////
@@ -106,7 +102,7 @@ public class AjoutFactureController implements Initializable {
             PdfWriter.getInstance(doc, new FileOutputStream(filePath));
             doc.open();
            
-            Image img = Image.getInstance("C:\\Users\\Nesrine\\Documents\\NetBeansProjects\\Pi_DEV_TANYT_21-22\\src\\image\\logoRed.png");
+            Image img = Image.getInstance("C:\\Users\\boura\\Documents\\NetBeansProjects\\integration_TANYT_pi\\src\\image\\logoRed.png");
             img.scaleAbsoluteWidth(200);
             img.scaleAbsoluteHeight(180);
             img.setAlignment(Image.ALIGN_CENTER);

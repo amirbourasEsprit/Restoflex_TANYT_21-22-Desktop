@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="835.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dashboard_FournFXMLController">
+<BorderPane fx:id="contentArea" prefHeight="835.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dashboard_FournFXMLController">
    <left>
       <AnchorPane prefHeight="700.0" prefWidth="258.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,22 +27,7 @@
                      </VBox.margin>
                   </ImageView>
                   <HBox prefHeight="115.0" prefWidth="259.0" />
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Mon fournisseur" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="17.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/packages.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="277.0" styleClass="btn-dashborad" text="Commandes  ">
+                  <Button mnemonicParsing="false" onAction="#commande_fournisseur" prefHeight="70.0" prefWidth="277.0" styleClass="btn-dashborad" text="Commandes  ">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -58,7 +43,7 @@
                      </VBox.margin>
                   </Button>
                   <HBox prefHeight="0.0" prefWidth="259.0" />
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Réclamations">
+                  <Button mnemonicParsing="false" onAction="#reclamationFournisseur" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Réclamations">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -71,7 +56,19 @@
                      </graphic>
                   </Button>
                   <HBox prefHeight="6.0" prefWidth="259.0" />
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Factures       ">
+                  <Button mnemonicParsing="false" onAction="#Stock_fournisseur" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Stock            " textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/packages.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#btn_facture_fourni" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Factures       ">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -91,7 +88,7 @@
                      <children>
                         <Separator prefHeight="5.0" prefWidth="318.0" />
                      </children></HBox>
-                  <Button fx:id="btn_parametre_profile" mnemonicParsing="false" prefHeight="75.0" prefWidth="259.0" styleClass="btn-dashborad" text="Paramétre Profile" underline="true">
+                  <Button fx:id="btn_parametre_profile" mnemonicParsing="false" onAction="#btn_parametre_profile" prefHeight="75.0" prefWidth="259.0" styleClass="btn-dashborad" text="Paramétre Profile" underline="true">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

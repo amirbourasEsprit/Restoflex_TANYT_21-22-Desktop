@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.stock;
 import java.net.URL;
@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import service.StockService;
 import interfaces.L_StockService;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -23,8 +24,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
 import static javafx.scene.input.KeyEvent.KEY_TYPED;
+import javafx.stage.Modality;
 import javax.swing.JOptionPane;
 
 /**
@@ -76,11 +79,14 @@ public class ModifierStockController implements Initializable {
   
           
           try{
+              boolean check=Suppression_Box("verification", "vous etes surde modifier ce fournisseur");
+          if(check){
     stoc.modifierStock(IDstock, st);
     JOptionPane.showMessageDialog(null,"le produit a été modifier avec succes");
+          }
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Stock.fxml"));
      Parent root = loader.load();
-            nom_stock.getScene().setRoot(root);
+     pane.getChildren().add(root);
     }catch(Exception e)
     {JOptionPane.showMessageDialog(null, e);}
       
@@ -91,7 +97,7 @@ public class ModifierStockController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Stock.fxml"));
             Parent root = loader.load();
-            nom_stock.getScene().setRoot(root);
+            pane.getChildren().add(root);
         } catch (IOException ex) {
             Logger.getLogger(ModifierStockController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -150,5 +156,23 @@ public EventHandler<KeyEvent> letter_Validation(final Integer max_Lengh) {
         }
     };
 }
+  public boolean Suppression_Box(String title, String message) {
+        boolean sortie = false;
+        Alert.AlertType Type = Alert.AlertType.CONFIRMATION;
+        Alert alert = new Alert(Type, "");
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            sortie = true;
+        } else if (result.get() == ButtonType.CANCEL) {
+            sortie = false;
+        }
+
+        return sortie;
+
+    }
+
     
 }

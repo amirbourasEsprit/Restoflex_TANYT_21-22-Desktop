@@ -4,34 +4,41 @@
  * and open the template in the editor.
  */
 package entities;
-import java.util.*;
-/**
- *
- * @author boura
- */
+import java.sql.*;
+
 public class Conge {
-    private long id_conge;
+    private int id_conge;
     private Date date_deb;
     private Date date_fin;
-    private long sold_restant;
+    private int solde_restant;
     private String etat;
-    private long id_type_conge;
-    private long id_utilisateur;
-
+    private int id_type_conge;
+    private int id_utilisateur;
+    public utilisateur user;
     public Conge() {
     }
 
-    public Conge(long id_conge, Date date_deb, Date date_fin, long sold_restant, String etat, long id_type_conge, long id_utilisateur) {
-        this.id_conge = id_conge;
+    public Conge(Date date_deb, Date date_fin, int solde_restant, String etat, int id_type_conge, int id_utilisateur) {
         this.date_deb = date_deb;
         this.date_fin = date_fin;
-        this.sold_restant = sold_restant;
+        this.solde_restant = solde_restant;
         this.etat = etat;
         this.id_type_conge = id_type_conge;
         this.id_utilisateur = id_utilisateur;
     }
 
-    public long getId_conge() {
+    
+    public Conge(int id_conge, Date date_deb, Date date_fin, int solde_restant, String etat, int id_type_conge, int id_utilisateur) {
+        this.id_conge = id_conge;
+        this.date_deb = date_deb;
+        this.date_fin = date_fin;
+        this.solde_restant = solde_restant;
+        this.etat = etat;
+        this.id_type_conge = id_type_conge;
+        this.id_utilisateur = id_utilisateur;
+    }
+
+    public int getId_conge() {
         return id_conge;
     }
 
@@ -43,23 +50,23 @@ public class Conge {
         return date_fin;
     }
 
-    public long getSold_restant() {
-        return sold_restant;
+    public int getSolde_restant() {
+        return solde_restant;
     }
 
     public String getEtat() {
         return etat;
     }
 
-    public long getId_type_conge() {
+    public int getId_type_conge() {
         return id_type_conge;
     }
 
-    public long getId_utilisateur() {
+    public int getId_utilisateur() {
         return id_utilisateur;
     }
 
-    public void setId_conge(long id_conge) {
+    public void setId_conge(int id_conge) {
         this.id_conge = id_conge;
     }
 
@@ -71,25 +78,25 @@ public class Conge {
         this.date_fin = date_fin;
     }
 
-    public void setSold_restant(long sold_restant) {
-        this.sold_restant = sold_restant;
+    public void setSolde_restant(int solde_restant) {
+        this.solde_restant = solde_restant;
     }
 
     public void setEtat(String etat) {
         this.etat = etat;
     }
 
-    public void setId_type_conge(long id_type_conge) {
+    public void setId_type_conge(int id_type_conge) {
         this.id_type_conge = id_type_conge;
     }
 
-    public void setId_utilisateur(long id_utilisateur) {
+    public void setId_utilisateur(int id_utilisateur) {
         this.id_utilisateur = id_utilisateur;
     }
 
     @Override
     public String toString() {
-        return "Conge{" + "id_conge=" + id_conge + ", date_deb=" + date_deb + ", date_fin=" + date_fin + ", sold_restant=" + sold_restant + ", etat=" + etat + ", id_type_conge=" + id_type_conge + ", id_utilisateur=" + id_utilisateur + '}';
+        return "Conge{" + "id_conge=" + id_conge + ", date_deb=" + date_deb + ", date_fin=" + date_fin + ", solde_restant=" + solde_restant + ", etat=" + etat + ", id_type_conge=" + id_type_conge + ", id_utilisateur=" + id_utilisateur + '}';
     }
     
 }

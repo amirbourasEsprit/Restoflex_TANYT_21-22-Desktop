@@ -15,6 +15,6 @@ public interface L_StockService  <T>{
      void ajouterStock (T entity) throws SQLException ; 
     void modifierStock(int id_fournisseur , T t) throws SQLException ; 
      void supprimerStock (int id_stock) throws SQLException;
-        List<T> afficherStock();
+        List<T> afficherStock(int id_fournisseur);
          public stock rechercheStock (int id_stock);
 }

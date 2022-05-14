@@ -6,29 +6,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="forget_pwd" prefHeight="339.0" prefWidth="636.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ForgetPaswordFXMLController">
+<AnchorPane id="AnchorPane" fx:id="forget_pwd" prefHeight="339.0" prefWidth="636.0" style="-fx-background-color: white;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ForgetPaswordFXMLController">
    <children>
       <Label fx:id="email_label" layoutX="236.0" layoutY="91.0" text="Email" textFill="#0d3b6a">
          <font>
-            <Font size="20.0" />
+            <Font name="Cambria Bold" size="20.0" />
          </font></Label>
       <Button fx:id="envoyer_mail_btn" layoutX="302.0" layoutY="277.0" mnemonicParsing="false" onAction="#envoyer_mail_btn_action" styleClass="blue-btn" text="Envoyer Mail" />
-      <Button fx:id="annuler_btn" layoutX="423.0" layoutY="277.0" mnemonicParsing="false" onAction="#annuler_btn_action" styleClass="blue-btn" text="Annuler" />
-      <TextField fx:id="email_text" layoutX="308.0" layoutY="90.0" />
-      <TextField fx:id="mdp_text" layoutX="308.0" layoutY="147.0" />
-      <TextField fx:id="cmdp_text" layoutX="308.0" layoutY="198.0" />
+      <Button fx:id="annuler_btn" layoutX="423.0" layoutY="269.0" mnemonicParsing="false" onAction="#annuler_btn_action" prefHeight="41.0" prefWidth="77.0" style="-fx-background-color: #1e85f1;" text="Annuler" textFill="WHITE">
+         <font>
+            <Font name="Cambria Bold" size="15.0" />
+         </font></Button>
+      <TextField fx:id="email_text" layoutX="308.0" layoutY="90.0" style="-fx-background-color: trasparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" />
+      <TextField fx:id="mdp_text" layoutX="308.0" layoutY="147.0" style="-fx-background-color: trasparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" />
+      <TextField fx:id="cmdp_text" layoutX="308.0" layoutY="198.0" style="-fx-background-color: trasparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" />
       <Label fx:id="mdp_label" layoutX="164.0" layoutY="148.0" text="Mot de passe" textFill="#0d3b6a">
          <font>
-            <Font size="20.0" />
+            <Font name="Cambria Bold" size="20.0" />
          </font></Label>
       <Label fx:id="cmdp_label" layoutX="72.0" layoutY="199.0" text="Confirmer mot de passe" textFill="#0d3b6a">
          <font>
-            <Font size="20.0" />
+            <Font name="Cambria Bold" size="20.0" />
          </font></Label>
-      <Button fx:id="mdp_btn" layoutX="238.0" layoutY="277.0" mnemonicParsing="false" onAction="#mdp_btn_action" styleClass="blue-btn" text="Changer mot de passe" />
+      <Button fx:id="mdp_btn" layoutX="238.0" layoutY="269.0" mnemonicParsing="false" onAction="#mdp_btn_action" prefHeight="41.0" prefWidth="171.0" style="-fx-background-color: #1e85f1;" text="Changer mot de passe" textFill="WHITE">
+         <font>
+            <Font name="Cambria Bold" size="15.0" />
+         </font></Button>
       <Label layoutX="213.0" layoutY="29.0" text="Mot de passe oublié" textFill="#0d3b6a">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="Cambria Bold" size="20.0" />
          </font>
       </Label>
    </children>

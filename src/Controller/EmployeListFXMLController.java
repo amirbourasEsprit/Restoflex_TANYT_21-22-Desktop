@@ -227,10 +227,7 @@ public class EmployeListFXMLController implements Initializable {
         visibility(false);
     }
 
-    @FXML
-    private void close_window(ActionEvent event) {
-        System.exit(0);
-    }
+  
     
       public void information_Box(String title, String message) {
         Alert dg = new Alert(Alert.AlertType.INFORMATION);

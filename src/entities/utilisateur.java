@@ -22,6 +22,15 @@ public class utilisateur {
     private Date date_naissance;
     private String adresse;
     private int Salaire;
+    private String Status_compte;
+
+    public String getStatus_compte() {
+        return Status_compte;
+    }
+
+    public void setStatus_compte(String Status_compte) {
+        this.Status_compte = Status_compte;
+    }
     //employee
     private int solde_conge;
     private String poste_employe;
@@ -29,9 +38,27 @@ public class utilisateur {
     private int id_role;
     private int id_rest;
     private int id_fournisseur;
-
+    public static utilisateur current_user; 
+     public fournisseur fournisseur;
+     public restaurant restaurant;
     //constructeur non parametrer
     public utilisateur() {
+    }
+
+    public utilisateur(int id_utilisateur, String nom, String prenom, String cin, String mdp, String email, String num_tel, Date date_naissance, String adresse, int id_role, int id_rest, int id_fournisseur,String Status_compte) {
+        this.id_utilisateur = id_utilisateur;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
+        this.mdp = mdp;
+        this.email = email;
+        this.num_tel = num_tel;
+        this.date_naissance = date_naissance;
+        this.adresse = adresse;
+        this.id_role = id_role;
+        this.id_rest = id_rest;
+        this.id_fournisseur = id_fournisseur;
+        this.Status_compte=Status_compte;
     }
     
     //constructure pour ajouter un employee
@@ -53,7 +80,7 @@ public class utilisateur {
     }
     //constucteur fournisseur
 
-    public utilisateur(String nom, String prenom, String cin, String mdp, String email, String numt_tel, Date date_naissance, String adresse, int id_role, int id_rest, int id_fournisseur) {
+    public utilisateur(String nom, String prenom, String cin, String mdp, String email, String numt_tel, Date date_naissance, String adresse, int id_role, int id_rest, int id_fournisseur ) {
         this.nom = nom;
         this.prenom = prenom;
         this.cin = cin;
@@ -65,6 +92,7 @@ public class utilisateur {
         this.id_role = id_role;
         this.id_rest = id_rest;
         this.id_fournisseur = id_fournisseur;
+        
     }
     
 //constructure modification
@@ -210,8 +238,9 @@ public class utilisateur {
 
     @Override
     public String toString() {
-        return "utilisateur{" + "id_utilisateur=" + id_utilisateur + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", mdp=" + mdp + ", email=" + email + ", numt_tel=" + num_tel + ", date_naissance=" + date_naissance + ", adresse=" + adresse + ", Salaire=" + Salaire + ", solde_conge=" + solde_conge + ", poste_employe=" + poste_employe + ", id_role=" + id_role + ", id_rest=" + id_rest + ", id_fournisseur=" + id_fournisseur + '}';
-    }
+        return nom+" "+prenom; 
+                }
+    //    return "utilisateur{" + "id_utilisateur=" + id_utilisateur + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin + ", mdp=" + mdp + ", email=" + email + ", numt_tel=" + num_tel + ", date_naissance=" + date_naissance + ", adresse=" + adresse + ", Salaire=" + Salaire + ", solde_conge=" + solde_conge + ", poste_employe=" + poste_employe + ", id_role=" + id_role + ", id_rest=" + id_rest + ", fournisseur=" + restaurant.getNom() + '}';
     
 
 

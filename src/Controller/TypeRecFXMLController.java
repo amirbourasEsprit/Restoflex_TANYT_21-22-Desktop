@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
+import Service.ServiceNotification;
 import entities.reclamation;
 import entities.type_reclamation;
 import java.net.URL;
@@ -26,7 +27,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
-import service.NotificationService;
 import service.ReclamationService;
 import service.type_reclamationService;
 
@@ -80,7 +80,8 @@ public class TypeRecFXMLController implements Initializable {
                 if(check){
                     tr.setNom_type_reclamation(IdNomTR.getText());
                     TRS.ajouterTypeReclamation(tr);
-        new NotificationService().Notification("Sucées", "Type Reclamation Ajoutée" );                    affichage();
+                    new ServiceNotification().Notification("Sucées", "Type Reclamation Ajoutée" );  
+                    affichage();
                     }
       
                     }

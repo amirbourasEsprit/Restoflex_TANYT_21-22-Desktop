@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import service.StockService;
 import interfaces.L_StockService;
 import entities.stock;
+import entities.utilisateur;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -82,6 +83,7 @@ public class StockController implements Initializable {
    
     @FXML
     private Button stat;
+    utilisateur util=utilisateur.current_user;
     
     /**
      * Initializes the controller class.
@@ -90,7 +92,7 @@ public class StockController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
      StockService st = new StockService();
-        List stock = st.afficherStock();
+        List stock = st.afficherStock(util.getId_fournisseur());
         ObservableList list = FXCollections.observableArrayList(stock);
         nom_stock.setCellValueFactory(new PropertyValueFactory<>("nom_stock"));
         prix_unitaire.setCellValueFactory(new PropertyValueFactory<>("prix_unitaire"));
@@ -148,20 +150,20 @@ public class StockController implements Initializable {
                           
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ModifierStock.fxml"));
                             try {
-                                 loader.load();
+                                   Parent root = loader.load();
+                                   pane.getChildren().add(root);
                                 
                             } catch (IOException ex) {
                                 Logger.getLogger(StockController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             
                             ModifierStockController ModifierStockController = loader.getController();
-                        ModifierStockController.setUpdate(true);
+                            ModifierStockController.setUpdate(true);
                             
                        ModifierStockController.setTextField(s.getId_stock(),s.getNom_stock(),s.getPrix_unitaire(),s.getQuantite());
-
-
-                       Parent root = loader.getRoot();
-                            editIcon.getScene().setRoot(root);
+                     //  Parent root = loader.getRoot();
+                      // editIcon.getScene().setRoot(root);
+                           
 
                         });
 
@@ -206,7 +208,7 @@ public class StockController implements Initializable {
       try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ModifierStock.fxml"));
             Parent root = loader.load();
-                        pane.getChildren().add(root);
+            pane.getChildren().add(root);
           // TODO
        } catch (IOException ex) {
            Logger.getLogger(StockController.class.getName()).log(Level.SEVERE, null, ex);
@@ -223,7 +225,7 @@ public class StockController implements Initializable {
     
      private void Actualiser() {
             StockService st = new StockService();
-        List stock = st.afficherStock();
+        List stock = st.afficherStock(util.getId_fournisseur());
         ObservableList list = FXCollections.observableArrayList(stock);
         table.setItems(list);
         nom_stock.setCellValueFactory(new PropertyValueFactory<>("nom_stock"));
@@ -251,7 +253,7 @@ public class StockController implements Initializable {
 
     @FXML
     private void search(KeyEvent event) {
-       int user_session_id_fournisseur=1;
+       int user_session_id_fournisseur=util.getId_fournisseur();
         StockService us = new StockService();
         String recherche=this.search.getText();
         ObservableList<stock> data = FXCollections.observableArrayList(us.rechercheStock2(user_session_id_fournisseur,recherche));

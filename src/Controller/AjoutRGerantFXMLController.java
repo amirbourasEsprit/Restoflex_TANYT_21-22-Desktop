@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.reclamation;
 import entities.restaurant;
@@ -33,7 +33,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import service.NotificationService;
+import Service.ServiceNotification;
 import service.ReclamationService;
 import service.type_reclamationService;
 
@@ -59,8 +59,11 @@ public class AjoutRGerantFXMLController implements Initializable {
     @FXML
     private RadioButton IdFourn;
   //  ReclamationService ps = new ReclamationService();
-      int current_user = 6;
+        utilisateur util=utilisateur.current_user;
+      int current_user = util.getId_utilisateur();
         ReclamationService rs = new ReclamationService();
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -90,8 +93,8 @@ public class AjoutRGerantFXMLController implements Initializable {
         r.setStatut_reclamation("En cours");
         
      rs.ajouterReclamation(r); 
-       JOptionPane.showMessageDialog(null, "Réclamation ajoutée");
-      new NotificationService().Notification("Sucées", "Reclamation Ajoutée" );
+      new ServiceNotification().Notification("Sucées", "Reclamation Ajoutée" );
+      JOptionPane.showMessageDialog(null, "Reclamation Ajoutée");
       IdBtnConf.getScene().getWindow().hide();
                         Parent root= FXMLLoader.load(getClass().getResource("../gui/ReclamationFXML.fxml"));
                         Stage stage =new Stage();
@@ -105,26 +108,15 @@ public class AjoutRGerantFXMLController implements Initializable {
 
     @FXML
     private void BtnAnnuler(ActionEvent event) throws IOException {
-          try {
-            //IdBtnAnn.getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/AjoutRGerantFXML.fxml"));
-            Stage mainStage= new Stage();
-            Scene scene = new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-            
+          try { 
+                FXMLLoader loader =new FXMLLoader(getClass().getResource("../gui/ReclamationFXML.fxml"));
+                Parent root = loader.load();
+                pane.getChildren().add(root);
             
         } catch (IOException ex) {
               JOptionPane.showMessageDialog(null, ex);
         }
-           IdBtnAnn.getScene().getWindow().hide();
-                        Parent root= FXMLLoader.load(getClass().getResource("../gui/ReclamationFXML.fxml"));
-                        Stage stage =new Stage();
-                        Scene scene = new Scene(root);
-                      //   scene.setFill(Color.TRANSPARENT);
-                             stage.setScene(scene);
-                           //  stage.initStyle(StageStyle.TRANSPARENT);
-                             stage.show();
+          
     }
 
     @FXML
@@ -134,7 +126,7 @@ public class AjoutRGerantFXMLController implements Initializable {
         if(IdEmploye.isSelected()){
             IdFourn.setSelected(false);
         //employe    
-        List <utilisateur> ue = rs.chercherNomEmploye(2);
+        List <utilisateur> ue = rs.chercherNomEmploye(util.getId_rest());
         ObservableList lue = FXCollections.observableArrayList(ue);
         IdDesti.setItems(lue);
           
@@ -147,7 +139,7 @@ public class AjoutRGerantFXMLController implements Initializable {
           if(IdFourn.isSelected()){
           IdEmploye.setSelected(false);        
          //fournisseur
-        List <utilisateur> uf = rs.chercherNomFournisseur(2);
+        List <utilisateur> uf = rs.chercherNomFournisseur(util.getId_rest());
         ObservableList luf = FXCollections.observableArrayList(uf);
         IdDesti.setItems(luf);
         }

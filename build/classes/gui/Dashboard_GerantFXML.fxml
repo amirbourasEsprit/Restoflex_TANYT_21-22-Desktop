@@ -51,7 +51,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Commandes  ">
+                  <Button mnemonicParsing="false" onAction="#commandeGerant_btn" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Commandes  ">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -63,7 +63,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Congés          " VBox.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#congeGerant_btn" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Congés          " VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -78,7 +78,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Réclamations">
+                  <Button mnemonicParsing="false" onAction="#reclamationGerant" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Réclamations">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -90,21 +90,19 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Factures       ">
+                  <Button mnemonicParsing="false" onAction="#type_reclamation_Gerant" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Type réclamation">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets bottom="67.0" />
-                     </VBox.margin>
                      <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/bill.png" />
+                              <Image url="@../image/exclamation-mark.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
+                  <HBox prefHeight="55.0" prefWidth="259.0" />
                   <HBox alignment="CENTER" prefHeight="42.0" prefWidth="259.0">
                      <children>
                         <Separator prefHeight="0.0" prefWidth="285.0" />

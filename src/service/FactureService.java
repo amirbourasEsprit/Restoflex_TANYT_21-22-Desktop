@@ -295,7 +295,7 @@ public class FactureService implements IFactureService<facture>{
             while(rs.next()){
                 Commande c = new Commande();
                 produit_restaurant p = new produit_restaurant();
-                c.setId_cmd(rs.getLong("id_cmd"));
+                c.setId_cmd(rs.getInt("id_cmd"));
                 c.setDate_cmd(rs.getDate("date_cmd"));
                 c.setQuantite(rs.getFloat("quantite"));
                 c.setDate_livraison(rs.getDate("date_livraison"));

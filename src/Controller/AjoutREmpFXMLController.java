@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
-import Service.ServiceNotification;
 import entities.reclamation;
 import entities.type_reclamation;
 import entities.utilisateur;
@@ -31,7 +30,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import service.NotificationService;
+import Service.ServiceNotification;
+import javafx.scene.layout.AnchorPane;
 import service.ReclamationService;
 import service.type_reclamationService;
 import sun.util.calendar.CalendarDate;
@@ -56,20 +56,23 @@ public class AjoutREmpFXMLController implements Initializable {
     @FXML
     private TextField idGerant;
     ReclamationService ps = new ReclamationService();
-            NotificationService ns= new NotificationService();
+            ServiceNotification ns= new ServiceNotification();
+            utilisateur util=utilisateur.current_user;
 
 
     /**
      * Initializes the controller class.
      */
      
-     int current_user=3;
-     String UserName ="anis"; //User name of current user
+     int current_user= util.getId_utilisateur();
+     String UserName =util.getPrenom(); //User name of current user
     // email of destinataire
-     int role =2; // role de current user
-      int cureent_user_resto=2;
+     int role =util.getId_role(); // role de current user
+      int cureent_user_resto=util.getId_rest();
      
         String email = "tasnim.abidi@esprit.tn";
+    @FXML
+    private AnchorPane pane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //choice box
@@ -87,8 +90,7 @@ public class AjoutREmpFXMLController implements Initializable {
 
     @FXML
     private void BtnConfirmer(ActionEvent event) throws SQLException, IOException{
-        java.sql.Date current_Date= new java.sql.Date(Calendar.getInstance().getTime().getTime()); //instance:local,getTime:date bkol chy .. gettime :ayamet
-      //  int current_user =13;
+        java.sql.Date current_Date= new java.sql.Date(Calendar.getInstance().getTime().getTime()); //instance:local,getTime:date bkol chy .. gettime :ayamet      
         System.out.println(IdTypeRec.getSelectionModel().getSelectedItem().getId_type_reclamation());
         reclamation r = new reclamation();
         r.setId_type_reclamation(IdTypeRec.getSelectionModel().getSelectedItem().getId_type_reclamation()); //ye5u nom type reclamation oyraja3 id
@@ -98,35 +100,29 @@ public class AjoutREmpFXMLController implements Initializable {
         r.setDate_reclamation(current_Date);
         r.setStatut_reclamation("En cours");
         ps.ajouterReclamation(r); 
-      JOptionPane.showMessageDialog(null, "Réclamation ajoutée");
-        //new NotificationService().Notification("Succès", "Reclamation ajoutée!" );
+        
+        new ServiceNotification().Notification("Succès", "Reclamation ajoutée!" );
+        JOptionPane.showMessageDialog(null, "Reclamation ajoutée");
         JavaMail mail = new JavaMail();
         mail.recipient = email;
         mail.UserName = UserName;
         mail.start();
 //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        IdBtnConf.getScene().getWindow().hide();
-                        Parent root= FXMLLoader.load(getClass().getResource("../gui/ReclamationFXML.fxml"));
-                        Stage stage =new Stage();
-                        Scene scene = new Scene(root);
-                      //   scene.setFill(Color.TRANSPARENT);
-                             stage.setScene(scene);
-                           //  stage.initStyle(StageStyle.TRANSPARENT);
-                             stage.show();
+        
+                        FXMLLoader loader= new FXMLLoader(getClass().getResource("../gui/ReclamationFXML.fxml"));
+                       Parent root = loader.load();
+                        pane.getChildren().add(root);
     
     }
 
     @FXML
     private void BtnAnnuler(ActionEvent event) throws Exception{
           try {
-             IdBtnAnn.getScene().getWindow().hide();
-                        Parent root= FXMLLoader.load(getClass().getResource("../gui/ReclamationFXML.fxml"));
-                        Stage stage =new Stage();
-                        Scene scene = new Scene(root);
-                      //   scene.setFill(Color.TRANSPARENT);
-                             stage.setScene(scene);
-                           //  stage.initStyle(StageStyle.TRANSPARENT);
-                             stage.show();
+            
+                    
+                        FXMLLoader loader= new FXMLLoader(getClass().getResource("../gui/ReclamationFXML.fxml"));
+                       Parent root = loader.load();
+                        pane.getChildren().add(root);
                              
         } catch (IOException ex) {
               JOptionPane.showMessageDialog(null, ex);

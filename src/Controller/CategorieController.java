@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.Commande;
 import entities.produit_restaurant;
+import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Calendar;
+import static java.util.Collections.list;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +37,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import service.CategorieCRUD;
 import service.CommandeCRUD;
+import service.UtilisateurService;
 
 /**
  * FXML Controller class
@@ -230,7 +233,7 @@ private String getquantite(){
         System.out.println(getquantite());
          java.sql.Date currentDate=new java.sql.Date(Calendar.getInstance().getTime().getTime());
         Commande r = new Commande();
-        int current_employee_id=3;
+        int current_employee_id=utilisateur.current_user.getId_utilisateur();
         CommandeCRUD su = new CommandeCRUD();
         Float j = Float.parseFloat(getquantite());
         System.out.println(getid_produit());
@@ -241,9 +244,11 @@ private String getquantite(){
         Commande u = new Commande(statut, currentDate, Date.valueOf(datelivraison.getValue()), j,current_employee_id,id_prod,id_fournisseur);
         su.ajouterCommande(u);
         su.modifierProd(u.getQuantite(), u.getId_produit());
-        mailUtil.sendMail("aniisbh123@gmail.com", "ilyes.bensaid@esprit.tn", "bacmath2017", "notification", "Votre commande est ajoute", null);
+        UtilisateurService us=new UtilisateurService();
+        String mailGerant=us.mailGerant(utilisateur.current_user.getId_rest());
+       //String mailGerant = datagerant.
+        mailUtil.sendMail(mailGerant, "ilyes.bensaid@esprit.tn", "bacmath2017", "notification", "Votre commande est ajoute", null);
         JOptionPane.showMessageDialog(null, "Vous avez ajouter une commande");
-       
         }
         
         

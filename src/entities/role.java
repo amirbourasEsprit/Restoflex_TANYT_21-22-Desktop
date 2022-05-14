@@ -43,7 +43,7 @@ public class role {
 
     @Override
     public String toString() {
-        return "role{" + "id_role=" + id_role + ", nom_role=" + nom_role + '}';
+        return nom_role ;
     }
     
 }

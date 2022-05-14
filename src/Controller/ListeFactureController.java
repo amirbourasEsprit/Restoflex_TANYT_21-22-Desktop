@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import entities.Commande;
 import entities.facture;
-import entities.restaurant;
+import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,14 +24,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -43,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -82,7 +77,10 @@ public class ListeFactureController implements Initializable {
      private ObservableList<facture> mesFactures ;
     facture f = null;
     protected static  facture p;
-
+    
+ utilisateur u= utilisateur.current_user;
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -97,11 +95,10 @@ public class ListeFactureController implements Initializable {
         
         FactureService fs = new FactureService();
         
-        //pour la liste des factures
+        //pour la liste des facture
        
-        //current_user.getId_rest
         mesFactures = FXCollections.observableArrayList();
-        List<facture> Al = fs.afficherFactureRest(3);
+        List<facture> Al = fs.afficherFactureRest(u.getId_rest());
         
        Al.stream().forEach((j)->{
             mesFactures.add(j);
@@ -161,12 +158,9 @@ public class ListeFactureController implements Initializable {
                              if (result.get() == ButtonType.OK){
                                  p = (facture)tableFactures.getSelectionModel().getSelectedItem();
                           try {
-                             Parent parent = FXMLLoader.load(getClass().getResource("../gui/AjoutFacture.fxml"));
-                             Scene scene = new Scene(parent);
-                             Stage stage = new Stage();
-                             stage.setScene(scene);
-                             stage.initStyle(StageStyle.UTILITY);
-                             stage.show();
+                             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AjoutFacture.fxml"));
+                            Parent root = loader.load();
+                             pane.getChildren().add(root);
                               } catch (IOException ex) {
                                   System.out.println(ex);
                             }
@@ -196,12 +190,9 @@ public class ListeFactureController implements Initializable {
                         detailIcon.setOnMouseClicked((MouseEvent event) -> {
                            p = (facture)tableFactures.getSelectionModel().getSelectedItem();
                           try {
-                             Parent parent = FXMLLoader.load(getClass().getResource("../gui/AjoutFacture.fxml"));
-                             Scene scene = new Scene(parent);
-                             Stage stage = new Stage();
-                             stage.setScene(scene);
-                             stage.initStyle(StageStyle.UTILITY);
-                             stage.show();
+                               FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AjoutFacture.fxml"));
+                            Parent root = loader.load();
+                             pane.getChildren().add(root);
                               } catch (IOException ex) {
                                   System.out.println(ex);
                             }
@@ -275,7 +266,7 @@ public class ListeFactureController implements Initializable {
        FactureService fs = new FactureService();
      
        mesFactures = FXCollections.observableArrayList();
-       List<facture> Al = fs.afficherFactureRest(3);
+       List<facture> Al = fs.afficherFactureRest(u.getId_rest());
         
        Al.stream().forEach((j)->{
             mesFactures.add(j);
@@ -317,12 +308,9 @@ public class ListeFactureController implements Initializable {
     @FXML
     private void getStatFact(ActionEvent event) {
         try {
-                Parent parent = FXMLLoader.load(getClass().getResource("../gui/StatFacture.fxml"));
-                Scene scene = new Scene(parent);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.initStyle(StageStyle.UTILITY);
-                stage.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/StatFacture.fxml"));
+                Parent root = loader.load();
+               pane.getChildren().add(root);
             } catch (IOException ex) {
                 System.out.println(ex);
             }

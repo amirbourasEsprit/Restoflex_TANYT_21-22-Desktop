@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="835.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dashboard_EmploFXMLController">
+<BorderPane fx:id="contentArea" prefHeight="835.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dashboard_EmploFXMLController">
    <left>
       <AnchorPane prefHeight="835.0" prefWidth="258.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,7 +27,7 @@
                      </VBox.margin>
                   </ImageView>
                   <HBox prefHeight="69.0" prefWidth="259.0" VBox.vgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Commandes  " VBox.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#commande_emp_btn" prefHeight="70.0" prefWidth="259.0" styleClass="btn-dashborad" text="Commandes  " VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -39,7 +39,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Congés          " VBox.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#conge_emp_btn" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Congés          " VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -54,7 +54,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Réclamations" VBox.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#reclamationEmployee" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Réclamations" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -72,7 +72,7 @@
                         <Separator prefHeight="0.0" prefWidth="329.0" />
                      </children>
                   </HBox>
-                  <Button fx:id="btn_parametre_profile" mnemonicParsing="false" prefHeight="75.0" prefWidth="259.0" styleClass="btn-dashborad" text="Paramétre Profile" underline="true" VBox.vgrow="ALWAYS">
+                  <Button fx:id="btn_parametre_profile" mnemonicParsing="false" onAction="#btn_parametre_profile" prefHeight="75.0" prefWidth="259.0" styleClass="btn-dashborad" text="Paramétre Profile" underline="true" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

@@ -5,6 +5,8 @@
  */
 package entities;
 
+import com.sun.jmx.snmp.UserAcl;
+
 /**
  *
  * @author boura
@@ -18,6 +20,7 @@ public class fournisseur {
     private String email_fournisseur;
     private String adresse_fournisseur;
     private String logo;
+   
 
     public fournisseur() {
     }
@@ -31,6 +34,11 @@ public class fournisseur {
         this.email_fournisseur = email_fournisseur;
         this.adresse_fournisseur = adresse_fournisseur;
         this.logo = logo;
+    }
+
+    public fournisseur(String nom_fournisseur) {
+        this.nom_fournisseur=nom_fournisseur;
+        
     }
 
     public int getId_fournisseur() {
@@ -99,7 +107,7 @@ public class fournisseur {
 
     @Override
     public String toString() {
-        return "fournisseur{" + "id_fournisseur=" + id_fournisseur + ", nom_fournisseur=" + nom_fournisseur + ", matricule_fiscale=" + matricule_fiscale + ", domaine_fournisseur=" + domaine_fournisseur + ", num_tel_fournisseur=" + num_tel_fournisseur + ", email_fournisseur=" + email_fournisseur + ", adresse_fournisseur=" + adresse_fournisseur + ", logo=" + logo + '}';
+        return  nom_fournisseur ;
     }
     
     

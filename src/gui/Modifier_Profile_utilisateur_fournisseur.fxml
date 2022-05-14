@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" fx:id="profile_user" prefHeight="830.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controller.Modifier_Profile_utilisateur_fournisseurController">
+   <children>
+      <Label alignment="CENTER" layoutX="498.0" layoutY="17.0" prefHeight="71.0" prefWidth="180.0" text="Mon Profile">
+         <font>
+            <Font name="Cambria Bold" size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom_ger" layoutX="360.0" layoutY="290.0" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: transparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" stylesheets="@styles.css" />
+      <TextField fx:id="prenom_ger" layoutX="663.0" layoutY="290.0" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: transparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" stylesheets="@styles.css" />
+      <PasswordField fx:id="pwd_ger" layoutX="360.0" layoutY="409.0" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: transparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" />
+      <TextField fx:id="tel_ger" layoutX="663.0" layoutY="409.0" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: transparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" stylesheets="@styles.css" />
+      <TextField fx:id="adresse_ger" layoutX="520.0" layoutY="509.0" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: transparent; -fx-border-color: #1e85f1; -fx-border-radius: 8px;" stylesheets="@styles.css" />
+      <Label fx:id="nom_ger_lab" layoutX="360.0" layoutY="263.0" text="Nom">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="tel_ger_lab" layoutX="663.0" layoutY="385.0" text="Téléphone">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="adresse_ger_lab" layoutX="520.0" layoutY="485.0" text="Adresse">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="udp_ger_btn" layoutX="905.0" layoutY="719.0" mnemonicParsing="false" onAction="#update_ger" prefHeight="51.0" prefWidth="204.0" style="-fx-background-color: #1e85f1;" text="Modifier Mon profile" textFill="WHITE">
+         <font>
+            <Font name="Cambria Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="prenom_ger_lab" layoutX="663.0" layoutY="263.0" text="Prénom">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="pwd_ger_lab" layoutX="360.0" layoutY="382.0" prefHeight="30.0" prefWidth="133.0" text="Mot de passe">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

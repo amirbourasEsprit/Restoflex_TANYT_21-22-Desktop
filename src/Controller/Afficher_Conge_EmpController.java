@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Controller;
 
 import com.itextpdf.text.BadElementException;
 import entities.PDF;
@@ -37,6 +37,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
@@ -105,6 +106,8 @@ public class Afficher_Conge_EmpController implements Initializable {
     private Label prenom_cong;
     @FXML
     private Button pdfB;
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -137,7 +140,7 @@ public class Afficher_Conge_EmpController implements Initializable {
     private void Load() {
         CongeService cong = new CongeService();
         //ObservableList<Conge> c =  cong.afficherConge2();
-        int id_current_user = 2;
+        int id_current_user = utilisateur.current_user.getId_rest();
         ObservableList<Conge> c = cong.afficherConge(id_current_user);//id user connecté bel intégration 
         Date_deb.setCellValueFactory(new PropertyValueFactory<Conge, Date>("date_deb"));
         Date_fin.setCellValueFactory(new PropertyValueFactory<Conge, Date>("date_fin"));
@@ -160,7 +163,7 @@ public class Afficher_Conge_EmpController implements Initializable {
 
     private void fill(Conge cong) throws SQLException {
 
-        String query = "select * from conge where id_conge=" +cong.getId_conge();
+        String query = "select * from conge where id_conge= "+cong.getId_conge();
         Connection con;
         Statement ste;
         PreparedStatement prst;
@@ -169,16 +172,14 @@ public class Afficher_Conge_EmpController implements Initializable {
         ResultSet rs = st.executeQuery(query);
         CongeService sc = new CongeService();
 
-        utilisateur u = sc.getuser(cong.getId_utilisateur());
+        utilisateur u = utilisateur.current_user;//sc.getuser(cong.getId_utilisateur());
         while (rs.next()) {
-            id_emp_cong.setText(rs.getString("id_utilisateur"));
             id_cong.setText(rs.getString("id_conge"));
-            nom_cong.setText(u.getNom());
-            prenom_cong.setText(u.getPrenom());
             (date_deb_cong.getEditor()).setText(rs.getString("date_deb"));
             (date_fin_cong.getEditor()).setText(rs.getString("date_fin"));
-
+           
         }
+        
         rs.close();
 
     }
@@ -249,18 +250,31 @@ public class Afficher_Conge_EmpController implements Initializable {
     @FXML
     private void modifier(ActionEvent event) throws SQLException {
         Conge cong = TableConge.getSelectionModel().getSelectedItem();
+        if(!cong.getEtat().isEmpty()){
+        utilisateur u=utilisateur.current_user;
+         id_emp_cong.setText(String.valueOf(u.getId_utilisateur()) );
+         nom_cong.setText(u.getNom());
+         prenom_cong.setText(u.getPrenom());
         champtrue();
-        fill(cong);
+        fill(cong);}
+        else{
+         TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setAnimationType(type);
+        tray.setTitle("Notifications");
+        tray.setMessage("Choisir un congé pour modifier");
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.seconds(5));
+        }
+        
     }
 
     @FXML
     private void Ajouter(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../gui/Ajout_CongeFXML.fxml"));
-        stage.setTitle("Ajout Congé");
-
-        stage.setScene(new Scene(root, 1000, 700));
-        stage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Ajout_CongeFXML.fxml"));
+       Parent root = loader.load();
+       pane.getChildren().add(root);
     }
 
     @FXML

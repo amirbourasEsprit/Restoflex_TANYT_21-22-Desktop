@@ -18,21 +18,22 @@ import util.MyConnection;
 
 /**
  *
- * @author Nesrine
+ * @author boura
  */
 public class RestaurantService implements I_RestaurantService<restaurant>{
-  private Connection con;
+  private final Connection con;
   private Statement ste;
   private PreparedStatement prst;
+   //pour initialiser la connexion
     public RestaurantService() {
         con = MyConnection.getInstance().getCnx();
     }
     
     @Override
-    public void ajouterRestaurant(restaurant r) throws SQLException {
-        String req = "INSERT INTO `restaurant` (`nom`,`specialite`,`adresse`,`email`,`num_tel`) VALUE (?,?,?,?,?)";
+    public void ajouter(restaurant r) throws SQLException {
+        String insert = "INSERT INTO `restaurant` (`nom`,`specialite`,`adresse`,`email`,`num_tel`) VALUE (?,?,?,?,?)";
         try{
-        prst= con.prepareStatement(req);
+        prst= con.prepareStatement(insert);
         
         prst.setString(1, r.getNom());
         prst.setString(2, r.getSpecialite());
@@ -47,12 +48,12 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
     }
 
     @Override
-    public void modifierRestaurant(long id, restaurant r) throws SQLException {
-       String req = "UPDATE `restaurant` SET "
+    public void modifier(long id, restaurant r) throws SQLException {
+       String update = "UPDATE `restaurant` SET "
                 +"`nom`=?,`specialite`=?,`adresse`=?,`email`=?,`num_tel`=?"
                 + "WHERE id_rest = '" +id+ "'";
         try {
-             prst= con.prepareStatement(req);
+             prst= con.prepareStatement(update);
              prst.setString(1, r.getNom());
              prst.setString(2, r.getSpecialite());
              prst.setString(3, r.getAdresse());
@@ -62,14 +63,14 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
             prst.executeUpdate();
             System.out.println("Restaurant modifier avec succée!");
 
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
     
     }
 
     @Override
-    public void supprimerRestaurant(long id) throws SQLException {
+    public void supprimer(long id) throws SQLException {
         String delete= "DELETE FROM restaurant where id_rest= ?";
         try {
             prst=con.prepareStatement(delete);
@@ -77,15 +78,16 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
             prst.executeUpdate();
             System.out.println("suppression restaurant avec succées");
             
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
     }
 
     @Override
-    public List<restaurant> afficherRestaurant() {
+    public List<restaurant> afficher() {
       List<restaurant>resList;
       resList=new ArrayList<>();
+      List<String> List_nom_rest=new ArrayList<String>();
       String select="SELECT * FROM `restaurant`";
         try {
             ste= con.createStatement();
@@ -98,15 +100,34 @@ public class RestaurantService implements I_RestaurantService<restaurant>{
                 u.setAdresse(rs.getString(4));
                 u.setEmail(rs.getString(5));
                 u.setNum_tel(rs.getString(6));
-                
+                List_nom_rest.add(u.getNom());
                 resList.add(u);
-                System.out.println("affichage succées");
+              System.out.println("affichage succées");
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     return resList;
     }
+    /*public List<String> afficher_list_nom_rest() {
+      List<String> List_nom_rest;
+      List_nom_rest = new ArrayList<>();
+      String select="SELECT `nom` FROM `restaurant`";
+        try {
+            ste= con.createStatement();
+            ResultSet rs = ste.executeQuery(select);
+            while(rs.next()){
+                restaurant u = new restaurant();
+                u.setNom(rs.getString(1));
+                List_nom_rest.add(u.getNom());
+                System.out.println("affichage succées");
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    return List_nom_rest;
+    }*/
     
 }

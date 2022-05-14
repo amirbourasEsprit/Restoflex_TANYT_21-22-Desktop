@@ -2,7 +2,6 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- 
 
 
 */
@@ -22,18 +21,15 @@ import javax.mail.internet.MimeMultipart;
 
 /**
  *
- * @author boura
+ * @author Yosr Belaam
  */
-public class SendMail{
+public class SendMailYosr  {
     
-
-
-
 
  public  void envoyerMail(String email,String Subject,String Object) {
 
-        final String username = "bouras.amir@esprit.tn";
-        final String password = "213JMT5266";
+        String username = "yosr.belaam@esprit.tn";
+        final String password = "211JFT1639";
         String fromEmail = username;
 
         Properties properties = new Properties();
@@ -72,6 +68,53 @@ public class SendMail{
     }
 
 
+public void send_mail_nour(String from,String pass,String to,String object,String subject)
+    {
+    
+         String password =pass;
+        String fromEmail =from;
 
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        });
+        //Start our mail message
+        MimeMessage msg = new MimeMessage(session);
+        try {
+            msg.setFrom(new InternetAddress(fromEmail));
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            msg.setSubject(subject);
+
+            Multipart emailContent = new MimeMultipart();
+
+            //Text body part
+            MimeBodyPart textBodyPart = new MimeBodyPart();
+            textBodyPart.setText(object);
+
+            emailContent.addBodyPart(textBodyPart);
+            msg.setContent(emailContent);
+
+            Transport.send(msg);
+            System.out.println("Sent message");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
+}
 
 }

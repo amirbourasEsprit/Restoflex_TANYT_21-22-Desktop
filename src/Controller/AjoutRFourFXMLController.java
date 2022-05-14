@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.reclamation;
 import entities.restaurant;
@@ -31,9 +31,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
-import service.NotificationService;
+import Service.ServiceNotification;
+import javafx.scene.layout.AnchorPane;
 import service.ReclamationService;
 import service.RestaurantService;
+import service.UtilisateurService;
 import service.type_reclamationService;
 import util.JavaMail;
 
@@ -57,16 +59,18 @@ public class AjoutRFourFXMLController implements Initializable {
     @FXML
     private TextField IdDesti;
      ReclamationService ps = new ReclamationService();
-
+     utilisateur util =utilisateur.current_user;
     /**
      * Initializes the controller class.
      */
      
-      int current_user = 8;
-     String UserName ="Salma";
-   
-    String email = "tasnim.abidi@esprit.tn";
-     int role =3;
+      int current_user = util.getId_utilisateur();
+     String UserName =util.getPrenom();
+    UtilisateurService us=new UtilisateurService();
+    String email =us.mailGerant(util.getId_rest()) ;
+     int role =util.getId_role();
+    @FXML
+    private AnchorPane pane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          //choice box
@@ -76,7 +80,7 @@ public class AjoutRFourFXMLController implements Initializable {
          IdTypeRec.setItems(list);
          
          ReclamationService rs = new ReclamationService();
-         List<restaurant> nomRest = rs.chercherRestaurant(1,"12548632"); //////esm fournisseur lkbiiirrr
+         List<restaurant> nomRest = rs.chercherRestaurant(util.getId_fournisseur(),util.getCin());
         ObservableList lr = FXCollections.observableArrayList(nomRest);
         IdRestaurant.setItems(lr);
         IdRestaurant.setOnAction(this::getPrenomGerant);
@@ -105,22 +109,17 @@ public class AjoutRFourFXMLController implements Initializable {
         r.setId_utilisateur(current_user);
         r.setDate_reclamation(current_Date);
         r.setStatut_reclamation("En cours");
-     ps.ajouterReclamation(r);
-       JOptionPane.showMessageDialog(null, "Réclamation ajoutée");
-     new NotificationService().Notification("Sucées", "Reclamation traitée" );
-
+     ps.ajouterReclamation(r); 
+     new ServiceNotification().Notification("Sucées", "Reclamation Ajoutée" );
+     JOptionPane.showMessageDialog(null, "Reclamation Ajoutée");
      JavaMail mail = new JavaMail();
         mail.recipient = email;
         mail.UserName = UserName;
         mail.start();
-      IdBtnConf.getScene().getWindow().hide();
-                        Parent root= FXMLLoader.load(getClass().getResource("../gui/ReclamationFXML.fxml"));
-                        Stage stage =new Stage();
-                        Scene scene = new Scene(root);
-                      //   scene.setFill(Color.TRANSPARENT);
-                             stage.setScene(scene);
-                           //  stage.initStyle(StageStyle.TRANSPARENT);
-                             stage.show();
+     
+                        FXMLLoader loader=new FXMLLoader(getClass().getResource("../gui/ReclamationFXML.fxml"));
+                       Parent root = loader.load();
+                         pane.getChildren().add(root);
     }
     
     

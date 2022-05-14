@@ -50,9 +50,6 @@ public class Dashboard_Admin_restoflexController implements Initializable {
         Loadpage("../GUI/admin_rest_liste");
     }
 
-    @FXML
-    private void fournisseur_resto(ActionEvent event) {
-    }
 
     @FXML
     private void role_restoflex(ActionEvent event) throws IOException {
@@ -82,5 +79,11 @@ public class Dashboard_Admin_restoflexController implements Initializable {
     root =FXMLLoader.load(getClass().getResource(page+".fxml"));
     contentArea.setCenter(root);
     }
+
+    @FXML
+    private void fournisseur_admin(ActionEvent event) throws IOException {
+     Loadpage("../GUI/Fournisseur");
+    }
+    
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.stock;
 import java.net.URL;
@@ -136,9 +136,9 @@ public class AjouterFournisseurController implements Initializable {
            fr.ajouterFournisseur(f);
    
     JOptionPane.showMessageDialog(null,"le fournisseur a été ajouté avec succes");
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Fournisseur.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Dashboard_Admin_restoflex.fxml"));
      Parent root = loader.load();
-            nom_fournisseur.getScene().setRoot(root);
+     nom_fournisseur.getScene().setRoot(root);
     }catch(Exception e)
     {JOptionPane.showMessageDialog(null, e);}
        }
@@ -148,7 +148,7 @@ public class AjouterFournisseurController implements Initializable {
     @FXML
     private void Cancel(ActionEvent event) {
                 try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Fournisseur.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Dashboard_Admin_restoflex.fxml"));
             Parent root = loader.load();
             nom_fournisseur.getScene().setRoot(root);
         } catch (IOException ex) {

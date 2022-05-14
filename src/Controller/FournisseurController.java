@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -152,7 +152,9 @@ static fournisseur f ;
                           
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ModifierFournisseur.fxml"));
                             try {
-                                 loader.load();
+                                 //loader.load();
+                                 Parent root = loader.load();
+                                  pane.getChildren().add(root);
                                 
                             } catch (IOException ex) {
                                 Logger.getLogger(StockController.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,8 +166,8 @@ static fournisseur f ;
                        ModifierFournisseurController.setTextField(f.getId_fournisseur(),f.getNom_fournisseur(),f.getMatricule_fiscale(),f.getDomaine_fournisseur(),f.getNum_tel_fournisseur(),f.getEmail_fournisseur(),f.getAdresse_fournisseur(), f.getLogo());
 
 
-                       Parent root = loader.getRoot();
-                            editIcon.getScene().setRoot(root);
+                     //Parent root = loader.load();
+                     // pane.getChildren().add(root);
 
                         });
                           /// finishes here Update fournisseur
@@ -287,7 +289,7 @@ static fournisseur f ;
          try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AjouterFournisseur.fxml"));
             Parent root = loader.load();
-                        pane.getChildren().add(root);
+            pane.getChildren().add(root);
           // TODO
        } catch (IOException ex) {
            Logger.getLogger(StockController.class.getName()).log(Level.SEVERE, null, ex);

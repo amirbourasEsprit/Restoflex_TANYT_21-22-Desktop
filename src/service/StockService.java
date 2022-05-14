@@ -83,10 +83,10 @@ try{
     }
 
     @Override
-    public List<stock> afficherStock() {
+    public List<stock> afficherStock(int id_fournisseur) {
          List<stock>stList;
       stList=new ArrayList<>();
-      String select="SELECT * FROM `stock`";
+      String select="SELECT * FROM stock s where s.id_fournisseur ="+id_fournisseur;
         try {
             ste= con.createStatement();
             
@@ -153,6 +153,24 @@ try{
             System.err.println(e.getMessage());
         }
             return stk;
+    }
+    //update stock s set quantite=quantite+? where nom_stock= 'Escalope' AND s.id_fournisseur= 1
+     public void modifierQuantiteStock(Float c,int id,String nomprod) {
+         
+        String req = "update stock set quantite=quantite-? where id_fournisseur= ? and nom_stock= ?";
+
+        try {
+            prst = con.prepareStatement(req);
+            prst.setFloat(1,c);
+            prst.setLong(2, id);
+            prst.setString(3, nomprod);
+          
+            prst.executeUpdate();
+            System.out.println("Stock modifier");
+        } catch (SQLException ex) {
+            System.err.print(ex.getMessage());
+        }
+
     }
     
  

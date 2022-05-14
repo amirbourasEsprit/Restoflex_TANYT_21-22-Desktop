@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>TANYT_3A14_pi</name>
+            <name>integration_TANYT_pi</name>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

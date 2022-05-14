@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Controller;
 
 import Service.SendMailYosr;
 import entities.Conge;
@@ -37,6 +37,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
@@ -110,9 +111,9 @@ public class Afficher_Conge_GerantController implements Initializable {
     @FXML
     private TableColumn<Conge, String> email_emp;
     @FXML
-    private Button Ajouter_TypeB;
-    @FXML
     private Button Afficher_type_congB;
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -129,7 +130,7 @@ public class Afficher_Conge_GerantController implements Initializable {
     @FXML
     private void Delete(ActionEvent event) throws SQLException {
         Conge cong = TableConge.getSelectionModel().getSelectedItem();
-        System.out.println(cong.getId_conge());
+        //System.out.println(cong.getId_conge());
         CongeService c = new CongeService();
         c.supprimerConge(cong.getId_conge());
         Load();
@@ -145,7 +146,7 @@ public class Afficher_Conge_GerantController implements Initializable {
     private void Load() {
         CongeService cong = new CongeService();
         //ObservableList<Conge> c =  cong.afficherConge2();
-        int id_current_user = 2;
+        int id_current_user = utilisateur.current_user.getId_rest();
         ObservableList<Conge> c = cong.afficherConge(id_current_user);//id user connecté bel intégration 
         Date_deb.setCellValueFactory(new PropertyValueFactory<Conge, Date>("date_deb"));
         Date_fin.setCellValueFactory(new PropertyValueFactory<Conge, Date>("date_fin"));
@@ -269,9 +270,10 @@ public class Afficher_Conge_GerantController implements Initializable {
 
     @FXML
     private void Approuver(ActionEvent event) throws SQLException {
-        String current_user_mail = "yosrbelaam1999@gmail.com";
+        String current_user_mail = utilisateur.current_user.getEmail();
         Conge cong = TableConge.getSelectionModel().getSelectedItem();
         System.out.println(cong);
+        System.out.println(cong.user);
         String destinataire = cong.user.getEmail();
         System.out.println(destinataire);
         CongeService sc = new CongeService();
@@ -279,10 +281,11 @@ public class Afficher_Conge_GerantController implements Initializable {
         Date d2 = cong.getDate_fin();
         int diff = diffdate(d1, d2);
         System.out.println(diff);
+        System.out.println(cong.user.getSolde_conge());
           if(diff<cong.user.getSolde_conge())
           {
                 sc.approuverConge(cong);
-                sc.soldeConge(cong.getId_utilisateur(),diff);
+                sc.soldeConge(cong.user.getId_utilisateur(),diff);
         
         //sc.approuverConge(cong);
         Load();
@@ -307,7 +310,7 @@ public class Afficher_Conge_GerantController implements Initializable {
 
     @FXML
     private void Refuser(ActionEvent event) throws SQLException {
-        String current_user_mail = "yosrbelaam1999@gmail.com";
+        String current_user_mail = utilisateur.current_user.getEmail();
         Conge cong = TableConge.getSelectionModel().getSelectedItem();
         CongeService sc = new CongeService();
         String destinataire = cong.user.getEmail();
@@ -363,22 +366,17 @@ public class Afficher_Conge_GerantController implements Initializable {
 
     }
 
-    @FXML
-    private void Ajouter_Type(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../gui/Ajout_Type_CongeFXML.fxml"));
-        stage.setTitle("Ajout Type Congé");
-        stage.setScene(new Scene(root, 1000, 700));
-        stage.show();
-    }
+    /*private void Ajouter_Type(ActionEvent event) throws IOException {
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("../gui/Ajout_Type_CongeFXML.fxml"));
+        Parent root = loader.load();
+        pane.getChildren().add(root);
+    }*/
 
     @FXML
     private void Afficher_Type_Cong(ActionEvent event) throws IOException {
-         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../gui/Afficher_Type_CongeFXML.fxml"));
-        stage.setTitle("Afficher Types Congé");
-        stage.setScene(new Scene(root, 1000, 700));
-        stage.show();
+         FXMLLoader loader =new FXMLLoader(getClass().getResource("../GUI/Afficher_Type_CongeFXML.fxml"));
+         Parent root = loader.load();
+         pane.getChildren().add(root);
     }
 
 }

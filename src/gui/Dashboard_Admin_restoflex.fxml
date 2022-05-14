@@ -39,7 +39,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#fournisseur_resto" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Fournisseurs" VBox.vgrow="ALWAYS">
+                  <Button mnemonicParsing="false" onAction="#fournisseur_admin" prefHeight="70.0" prefWidth="268.0" styleClass="btn-dashborad" text="Fournisseurs" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

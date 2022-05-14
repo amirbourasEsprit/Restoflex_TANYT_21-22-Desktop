@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,6 +32,8 @@ public class Dashboard_EmploFXMLController implements Initializable {
     private Button btn_parametre_profile;
     @FXML
     private Button btn_Logout;
+    @FXML
+    private BorderPane contentArea;
 
     /**
      * Initializes the controller class.
@@ -57,6 +60,31 @@ public class Dashboard_EmploFXMLController implements Initializable {
         }
     }
 
+    @FXML
+    private void commande_emp_btn(ActionEvent event) throws IOException {
+        Loadpage("../GUI/categorie");
+        
+    }
+    private void Loadpage(String page) throws IOException {
+    Parent root =null;
+    root =FXMLLoader.load(getClass().getResource(page+".fxml"));
+    contentArea.setCenter(root);
+    }
+
+    @FXML
+    private void conge_emp_btn(ActionEvent event) throws IOException {
+        Loadpage("../GUI/Afficher_Conge_Emp");
+    }
+
+    @FXML
+    private void reclamationEmployee(ActionEvent event) throws IOException {
+         Loadpage("../gui/ReclamationFXML");
+    }
+
+    @FXML
+    private void btn_parametre_profile(ActionEvent event) throws IOException {
+         Loadpage("../gui/Modifier_Profile_utilisateur_fournisseur");
+    }
 
    
     

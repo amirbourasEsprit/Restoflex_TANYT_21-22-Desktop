@@ -147,26 +147,45 @@ public class ReclamationService implements I_ReclamationService<reclamation>{
     }
      
        public List<reclamation> afficherReclamationRecu(String nom){
-          List<reclamation>recList;
-      recList=new ArrayList<>();
-      String select="SELECT * FROM `reclamation` WHERE destinataire LIKE'%"+nom+"%'";
+          //List<reclamation>recList;
+          ObservableList<reclamation>recList = FXCollections.observableArrayList();
+    
+      String select="SELECT * FROM reclamation r inner join utilisateur u on r.id_utilisateur=u.id_utilisateur WHERE destinataire LIKE '%"+nom+"%'";
          System.out.println(select);
         try {
             ste= con.createStatement();
             ResultSet rs = ste.executeQuery(select); 
             while(rs.next()){
+                utilisateur u= new utilisateur();
                 System.out.println(rs.getLong(1));
-                reclamation u = new reclamation();
-                u.setNum_reclamation(rs.getLong(1));
-                u.setDestinataire(rs.getString(2));
-                u.setDescription(rs.getString(3));
-                u.setStatut_reclamation(rs.getString(4));
-                u.setDate_reclamation(rs.getDate(5));
-                u.setId_type_reclamation(rs.getInt(6));
-                u.setId_utilisateur(rs.getInt(7));
+                reclamation r = new reclamation();
+                r.setNum_reclamation(rs.getLong(1));
+                r.setDestinataire(rs.getString(2));
+                r.setDescription(rs.getString(3));
+                r.setStatut_reclamation(rs.getString(4));
+                r.setDate_reclamation(rs.getDate(5));
+                r.setId_type_reclamation(rs.getInt(6));
+                r.setId_utilisateur(rs.getInt(7));
+                u.setId_utilisateur(rs.getInt(8));
+                u.setNom(rs.getString(9));
+                u.setPrenom(rs.getString(10));
+                u.setCin(rs.getString(11));
+                u.setMdp(rs.getString(12));
+                u.setEmail(rs.getString(13));                
+                u.setNum_tel(rs.getString(14));
+                u.setDate_naissance(rs.getDate(15));
+                u.setAdresse(rs.getString(16));
+                u.setSalaire(rs.getInt(17));
+                u.setSolde_conge(rs.getInt(18));
+                u.setPoste_employe(rs.getString(19));
+                u.setId_role(rs.getInt(20));
+                u.setId_rest(rs.getInt(21));
+                u.setId_fournisseur(rs.getInt(22));
+                u.setStatus_compte(rs.getString(23));
+                r.utilisateur=u;
                 
-                recList.add(u);
-                System.out.println("affichage avec succée");
+                recList.add(r);
+               // System.out.println("affichage avec succée");
             }
 
         } catch (SQLException e) {
@@ -178,7 +197,7 @@ public class ReclamationService implements I_ReclamationService<reclamation>{
          public List<reclamation> afficherReclamationTraite(){
           List<reclamation>recList;
       recList=new ArrayList<>();
-      String select="SELECT * FROM `reclamation` WHERE statut_reclamation ='Traité'";
+      String select="SELECT * FROM `reclamation` WHERE statut_reclamation= 'Traité'";
          System.out.println(select);
         try {
             ste= con.createStatement();
@@ -207,23 +226,43 @@ public class ReclamationService implements I_ReclamationService<reclamation>{
           public List<reclamation> afficherReclamationRecuNonTraite(String nom){
           List<reclamation>recList;
       recList=new ArrayList<>();
-      String select="SELECT * FROM `reclamation` WHERE destinataire LIKE'%"+nom+"%' AND statut_reclamation = 'En cours'";
+      String select="SELECT * FROM reclamation r inner join utilisateur u on r.id_utilisateur=u.id_utilisateur WHERE destinataire LIKE'%"+nom+"%' AND statut_reclamation = 'En cours'";
          System.out.println(select);
         try {
             ste= con.createStatement();
             ResultSet rs = ste.executeQuery(select); //mod==>
             while(rs.next()){
                 System.out.println(rs.getLong(1));
-                reclamation u = new reclamation();
-                u.setNum_reclamation(rs.getLong(1));
-                u.setDestinataire(rs.getString(2));
-                u.setDescription(rs.getString(3));
-                u.setStatut_reclamation(rs.getString(4));
-                u.setDate_reclamation(rs.getDate(5));
-                u.setId_type_reclamation(rs.getInt(6));
-                u.setId_utilisateur(rs.getInt(7));
+                reclamation r = new reclamation();
+                utilisateur u=new utilisateur();
+                r.setNum_reclamation(rs.getLong(1));
+                r.setDestinataire(rs.getString(2));
+                r.setDescription(rs.getString(3));
+                r.setStatut_reclamation(rs.getString(4));
+                r.setDate_reclamation(rs.getDate(5));
+                r.setId_type_reclamation(rs.getInt(6));
+                r.setId_utilisateur(rs.getInt(7));
+                u.setId_utilisateur(rs.getInt(8));
+                u.setNom(rs.getString(9));
+                u.setPrenom(rs.getString(10));
+                u.setCin(rs.getString(11));
+                u.setMdp(rs.getString(12));
+                u.setEmail(rs.getString(13));                
+                u.setNum_tel(rs.getString(14));
+                u.setDate_naissance(rs.getDate(15));
+                u.setAdresse(rs.getString(16));
+                u.setSalaire(rs.getInt(17));
+                u.setSolde_conge(rs.getInt(18));
+                u.setPoste_employe(rs.getString(19));
+                u.setId_role(rs.getInt(20));
+                u.setId_rest(rs.getInt(21));
+                u.setId_fournisseur(rs.getInt(22));
+                u.setStatus_compte(rs.getString(23));
+                r.utilisateur=u;
                 
-                recList.add(u);
+                recList.add(r);
+                
+               
                 System.out.println("affichage avec succée");
             }
 
@@ -260,10 +299,11 @@ public class ReclamationService implements I_ReclamationService<reclamation>{
     }
 
     @Override
-    public List<restaurant> chercherRestaurant(int id,String cin ) {
+    public List<restaurant> chercherRestaurant(int id,String cin) {
         List<restaurant> LR = new ArrayList<>();
         
-        String req2="SELECT r.nom, r.id_rest from restaurant r INNER JOIN utilisateur u ON r.id_rest=u.id_rest where u.id_role=3 and u.id_fournisseur= "+id+" and u.cin= "+cin;
+        String req2="SELECT r.nom, r.id_rest from restaurant r INNER JOIN utilisateur u ON r.id_rest=u.id_rest where u.id_role=3 and u.id_fournisseur= "+id+" and u.cin= "+cin ;
+        System.out.println(req2.toString());
         try {
             ste= con.createStatement();
             ResultSet rs = ste.executeQuery(req2);
@@ -282,6 +322,7 @@ public class ReclamationService implements I_ReclamationService<reclamation>{
         }
       return LR;  
     }
+    
 
     @Override
     public reclamation chercherReclamation(long id) {
@@ -357,9 +398,9 @@ public class ReclamationService implements I_ReclamationService<reclamation>{
         return LUE;
 }
        //metier1
-       public List<reclamation> rechercherParDate(int id_rest_current,String recherche) {
+       public List<reclamation> rechercherParDate(int id_current,String recherche) {
         ObservableList<reclamation>recList=FXCollections.observableArrayList();
-         String select="SELECT * FROM reclamation WHERE id_utilisateur="+id_rest_current+" AND date_reclamation = '" +recherche+"'";
+         String select="SELECT * FROM reclamation WHERE id_utilisateur="+id_current+" AND date_reclamation = '" +recherche+"'";
            System.out.println(select);
         try {
             ste= con.createStatement();

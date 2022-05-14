@@ -16,6 +16,7 @@ public class restaurant {
     private String adresse;
     private String email ;
     private String num_tel;
+  //  public static restaurant selected_resto;
 
     
     ///////////CONSTRUCTEUR////////////
@@ -90,18 +91,12 @@ public class restaurant {
     }
     /////////TO STRING ////////
 
-   /* @Override
-    public String toString() {
-        return "restaurant{" + "id_rest=" + id_rest + ", nom=" + nom + ", specialite=" + specialite + ", adresse=" + adresse + ", email=" + email + ", num_tel=" + num_tel + '}';
-    }*/
+    
 
     @Override
     public String toString() {
-        return nom;
+        return  nom ;
     }
-    
-    
-    
-    
+  
 }
 

@@ -98,6 +98,33 @@ public class Dashboard_GerantFXMLController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void commandeGerant_btn(ActionEvent event) {
+        try {
+            Loadpage("../GUI/ajoutercommande");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
+    }
+
+    @FXML
+    private void congeGerant_btn(ActionEvent event) throws IOException {
+        Loadpage("../GUI/Afficher_Conge_Gerant");
+    }
+
+    @FXML
+    private void reclamationGerant(ActionEvent event) throws IOException {
+        Loadpage("../gui/ReclamationFXML");
+    }
+
+    @FXML
+    private void type_reclamation_Gerant(ActionEvent event) throws IOException {
+        Loadpage("../gui/TypeRecFXML");
+    }
+
+  
     
     
 }

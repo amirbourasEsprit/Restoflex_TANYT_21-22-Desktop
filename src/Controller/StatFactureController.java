@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entities.facture;
+import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -23,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import service.FactureService;
 
@@ -37,6 +39,9 @@ public class StatFactureController implements Initializable {
     private PieChart pieChartFact;
     @FXML
     private FontAwesomeIconView pagePecedente;
+    utilisateur u=utilisateur.current_user;
+    @FXML
+    private AnchorPane pane;
     
   
     /**
@@ -48,9 +53,8 @@ public class StatFactureController implements Initializable {
         FactureService fs = new FactureService();
         List<facture> lf = fs.afficherFacture();
         ObservableList<PieChart.Data> list=FXCollections.observableArrayList(
-//current_user.getidRest
-            new PieChart.Data("Non Payée", fs.nbFactureNPayee(3)),
-            new PieChart.Data("Payée", fs.nbFacturePayee(3))
+            new PieChart.Data("Non Payée", fs.nbFactureNPayee(u.getId_rest())),
+            new PieChart.Data("Payée", fs.nbFacturePayee(u.getId_rest()))
          );
    
          pieChartFact.setAnimated(true);
@@ -62,11 +66,9 @@ public class StatFactureController implements Initializable {
     private void getBack(MouseEvent event) {
         
         try {
-            Parent p = FXMLLoader.load(getClass().getResource("../gui/ListeFacture.fxml"));
-            Scene scene = new Scene(p);
-            Stage App = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            App.setScene(scene);
-            App.show();
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("../gui/ListeFacture.fxml"));
+             Parent root = loader.load();
+             pane.getChildren().add(root);
         } catch (IOException ex) {
             Logger.getLogger(StatFactureController.class.getName()).log(Level.SEVERE, null, ex);
         }

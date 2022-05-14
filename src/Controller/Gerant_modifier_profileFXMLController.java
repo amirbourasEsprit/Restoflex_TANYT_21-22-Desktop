@@ -101,10 +101,10 @@ public class Gerant_modifier_profileFXMLController implements Initializable {
   
         
        nom_rest.setText(data.get(0).restaurant.getNom());
-        spec_rest.setText(data.get(0).restaurant.getSpecialite() );
-        adresse_rest.setText(data.get(0).restaurant.getAdresse());
-        Email_rest.setText(data.get(0).restaurant.getEmail());
-        tel_rest.setText(data.get(0).restaurant.getNum_tel());
+       spec_rest.setText(data.get(0).restaurant.getSpecialite() );
+       adresse_rest.setText(data.get(0).restaurant.getAdresse());
+       Email_rest.setText(data.get(0).restaurant.getEmail());
+       tel_rest.setText(data.get(0).restaurant.getNum_tel());
     }    
 //pour modifier mon restaurant
     @FXML
@@ -260,13 +260,7 @@ public class Gerant_modifier_profileFXMLController implements Initializable {
 
         }
         return false;
-    }
-
-    @FXML
-    private void close_window(ActionEvent event) {
-        System.exit(0);
-    }
-    
+    }    
 }
     
 

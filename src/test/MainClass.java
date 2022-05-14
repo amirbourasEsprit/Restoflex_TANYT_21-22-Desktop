@@ -5,54 +5,65 @@
  */
 package test;
 
-import entities.facture;
-import entities.fournisseur_restaurant;
-import entities.restaurant;
+import entities.*;
+import java.util.*;
 import java.sql.SQLException;
-import service.FactureService;
-import service.FrnsRestService;
-import service.RestaurantService;
-import util.MyConnection;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import service.*;
 /**
  *
  * @author boura
  */
 public class MainClass {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ParseException {
+      //TEST CRUD RESTAURANT
+       //  RestaurantService rs =new RestaurantService();
+     /*  restaurant r1= new restaurant("baila", "pizzaria", "ariana", "bail@gmail.com", "95379411");
+       restaurant r2= new restaurant("cozzyfood", "pizzaria", "ariana", "cozyfood@gmail.com", "95379411");
+       rs.ajouter(r1);
+       rs.modifier(1, r2);
+       rs.supprimer(1);*/
+      // System.out.println(rs.afficher_list_nom_rest()); 
         
         
-        FactureService fs = new FactureService();
-        java.util.Date date = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        facture f1 = new facture(sqlDate, 1700, "non payée", 1, 3);
-        //fs.ajouterFacture(f1);
-       // fs.modifierFacture(4, f1);
-       // fs.supprimerFacture(5);
-       // System.out.println(fs.afficherFacture()); 
-       // fs.rechercherFournisseur(3);
-       // fs.afficherFactureRest(3);
-       // fs.calculTotal(2);
-       //fs.nbFacturePayee();
-      // fs.nbFactureNPayee();
-      //fs.afficherCommande(3, 1);
-   
+       //TEST CRUD ROLE
+    /*   RoleService rs=new RoleService();
+        role r1= new role("Gérant");
+        role r2= new role("Employée");
+        role r3= new role("Utilisateur_fournisseur");
+        rs.ajouter(r1);
+        rs.modifier(2, r2);
+        rs.ajouter(r3);
         
-       // FrnsRestService fr = new FrnsRestService();
-       // fournisseur_restaurant frt = new fournisseur_restaurant(3, 1);
-       //fr.ajouterFrnsRest(frt);
-       //fr.modifierFrnsRest(2, frt);
-       //fr.supprimerFrnsRest(2);
-     //  fr.afficherFrnsRest();
-          
-       /* RestaurantService rs = new RestaurantService();
-        restaurant r = new restaurant("716", "salon de thé", "lac 2", "716@gmail.com", "71548236");
-        rs.ajouterRestaurant(r);
-        rs.afficherRestaurant();
-        rs.modifierRestaurant(2, r);
-        rs.supprimerRestaurant(2);*/
-        
+       System.out.println(rs.afficher());*/
+      UtilisateurService ut=new UtilisateurService();
+        System.out.println( ut.afficherCurrentuser(4));
+    // DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    //Date d1 = df.parse("1998-05-02"); 
+ // Calendar C = new GregorianCalendar(1998,05-1,02);
+    //  Date  birthday=C.getTime();
+    //java.sql.Date date= new java.sql.Date(birthday.getTime());
        
-       
+        //System.out.println(birthday);
+      
+     //utilisateur u1=new utilisateur("ikram", "bouras", "07477323", "ikrambouras", "ikram@gmail.com", "95379411", date, "hedi noira",3,2,1);
+  //   utilisateur u2=new utilisateur("anis", "benhmida", "00258421", "anisbenhmida", "anis@gmail.com", "55376927", date, "zahra", 1500, 25, "terrase");
+   //  ut.ajouterEmploye(u1);
+  // ut.ajouterFournisseur(u1);
+   // ut.supprimer(1);
+      //  System.out.println(ut.afficher());
+    // ut.modifier(3, u2);
+   // UtilisateurService uttest=new UtilisateurService();
+  //   String Email="amir@gmail.com";
+   //  String mdp="amirbouas";
+       //System.out.println( uttest.afficherCurrentuser(4));
+        //ReclamationService rs = new ReclamationService();
+        //System.out.println(rs.afficherReclamationTraite());
+      //  StockService ss=new StockService();
+      //  ss.modifierQuantiteStock(20f, 1, "Chawarma");
     }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import service.FournisseurService;
 import entities.fournisseur;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -22,7 +23,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,6 +58,8 @@ public class ModifierFournisseurController implements Initializable {
  FournisseurService frs = new FournisseurService();
     @FXML
     private TextField logo;
+    @FXML
+    private AnchorPane pane;
     /**
      * Initializes the controller class.
      */
@@ -101,11 +107,15 @@ public class ModifierFournisseurController implements Initializable {
   
           
           try{
+              boolean check=Suppression_Box("verification", "vous etes surde modifier ce fournisseur");
+          if(check){
     frs.modifierFournisseur(IDFournisseur, f);
+    
+                    }
     JOptionPane.showMessageDialog(null,"le fournisseur a été modifier avec succes");
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Fournisseur.fxml"));
      Parent root = loader.load();
-            nom_fournisseur.getScene().setRoot(root);
+     pane.getChildren().add(root);
     }catch(Exception e)
     {JOptionPane.showMessageDialog(null, e);}
                   }
@@ -116,8 +126,8 @@ public class ModifierFournisseurController implements Initializable {
     private void Cancel(ActionEvent event) {
           try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Fournisseur.fxml"));
-            Parent root = loader.load();
-            nom_fournisseur.getScene().setRoot(root);
+              Parent root = loader.load();
+              pane.getChildren().add(root);
         } catch (IOException ex) {
             Logger.getLogger(ModifierFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -181,5 +191,21 @@ public EventHandler<KeyEvent> letter_Validation(final Integer max_Lengh) {
         }
     };
 }
-    
+     public boolean Suppression_Box(String title, String message) {
+        boolean sortie = false;
+        Alert.AlertType Type = Alert.AlertType.CONFIRMATION;
+        Alert alert = new Alert(Type, "");
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            sortie = true;
+        } else if (result.get() == ButtonType.CANCEL) {
+            sortie = false;
+        }
+
+        return sortie;
+
+    }
 }

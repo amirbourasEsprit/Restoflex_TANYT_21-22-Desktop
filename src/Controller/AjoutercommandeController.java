@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.Commande;
 import entities.fournisseur;
+import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -102,7 +103,7 @@ public class AjoutercommandeController implements Initializable {
     private TextField pmax;
 private int p=0;
 private String ch="";
-private int current_user_rest=3;
+private int current_user_rest=utilisateur.current_user.getId_rest();
     @FXML
     private Label statutlabel;
     @FXML
@@ -248,8 +249,6 @@ private int current_user_rest=3;
         Commande c=new Commande();
         c.setId_cmd(-1);
           c = tableview.getSelectionModel().getSelectedItem();
-         
-          System.out.println(c);
           if(c.getId_cmd()!=-1){
               fournL.setValue(fournL.getSelectionModel().getSelectedItem());
               Date date_livra= c.getDate_livraison();
@@ -263,6 +262,11 @@ private int current_user_rest=3;
           {
           confirmerCommande.setVisible(false);
           }
+          else if("En Livraison".equals(c.getStatut()))
+          {
+              confirmerCommande.setVisible(false);
+          }
+          
          
              
            supprimer.setDisable(false);
@@ -366,7 +370,7 @@ private boolean controleSaisie(){
         Commande u = new Commande(statut.getText(), currentDate, Date.valueOf(datelivraison.getValue()), j,id_util,id_prod,fournL.getValue().getId_fournisseur());
         su.ajouterCommande(u);
         su.modifierProd(u.getQuantite(), u.getId_produit());
-        mailUtil.sendMail("aniisbh123@gmail.com", "ilyes.bensaid@esprit.tn", "bacmath2017", "notification", "Votre commande est ajoute", null);
+       // mailUtil.sendMail("aniisbh123@gmail.com", "ilyes.bensaid@esprit.tn", "bacmath2017", "notification", "Votre commande est ajoute", null);
         JOptionPane.showMessageDialog(null, "Vous avez ajouter une commande");
         showBox();}
     }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
-import static controllers.ReclamationRecuController.r;
+import static Controller.ReclamationRecuController.r;
 import entities.reclamation;
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +37,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import service.NotificationService;
+import Service.ServiceNotification;
+import entities.utilisateur;
+import javafx.scene.layout.AnchorPane;
 import service.ReclamationService;
 
 /**
@@ -68,15 +70,17 @@ public class ReclamationFXMLController implements Initializable {
     private Button IdDetails;
 
     static reclamation r;
-
+    utilisateur util=utilisateur.current_user;
     /**
      * Initializes the controller class.
      */
-    int current_user = 6;
-    String UserName = "Tasnim";
-    int role = 2;
+    int current_user = util.getId_utilisateur();
+    String UserName = util.getPrenom();
+    int role = util.getId_role();
     @FXML
     private Button IdDetails1;
+    @FXML
+    private AnchorPane pane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,36 +108,30 @@ public class ReclamationFXMLController implements Initializable {
         switch (role) {
             case 1:
                 try {
-                    IdBtnAjouter.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("../gui/AjoutRGerantFXML.fxml"));
-                    Stage mainStage = new Stage();
-                    Scene scene = new Scene(root);
-                    mainStage.setScene(scene);
-                    mainStage.show();
+                   // IdBtnAjouter.getScene().getWindow().hide();
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AjoutRGerantFXML.fxml"));
+                    Parent root = loader.load();
+                        pane.getChildren().add(root);
                     
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }   break;
             case 2:
                 try {
-                    IdBtnAjouter.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("../gui/AjoutREmpFXML.fxml"));
-                    Stage mainStage = new Stage();
-                    Scene scene = new Scene(root);
-                    mainStage.setScene(scene);
-                    mainStage.show();
+                    //IdBtnAjouter.getScene().getWindow().hide();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AjoutREmpFXML.fxml"));
+                    Parent root = loader.load();
+                    pane.getChildren().add(root);
                     
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }   break;
             case 3:
                 try {
-                    IdBtnAjouter.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("../gui/AjoutRFourFXML.fxml"));
-                    Stage mainStage = new Stage();
-                    Scene scene = new Scene(root);
-                    mainStage.setScene(scene);
-                    mainStage.show();
+                   
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AjoutRFourFXML.fxml"));
+                     Parent root = loader.load();
+                     pane.getChildren().add(root);
                     
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
@@ -161,8 +159,8 @@ public class ReclamationFXMLController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ReclamationFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-          JOptionPane.showMessageDialog(null, "Réclamation Supprimée");
-        new NotificationService().Notification("Sucées", "Reclamation supprimée" );
+        new ServiceNotification().Notification("Sucées", "Reclamation Supprimée" );
+        JOptionPane.showMessageDialog(null, "Reclamation Supprimée");
         ActualiserTable();
 
     }
@@ -210,11 +208,13 @@ public class ReclamationFXMLController implements Initializable {
             FXMLLoader loader1 = new FXMLLoader();
             loader1.setLocation(getClass().getResource("../gui/DetailsRecFXML.fxml"));
             
-            Parent parent = (Parent) loader1.load();
+          /*  Parent parent = (Parent) loader1.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
             
-            stage.show();
+            stage.show();*/
+             Parent root = loader1.load();
+             pane.getChildren().add(root);
             DetailsRecFXMLController details = loader1.getController();
             details.setReservation(r);
         } catch (IOException ex) {
@@ -242,15 +242,14 @@ public class ReclamationFXMLController implements Initializable {
     @FXML
     private void btnReclamationReçu(ActionEvent event) {
         try {
-            IdBtnAjouter.getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/ReclamationRecu.fxml"));
-            Stage mainStage = new Stage();
-            Scene scene = new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
+            //IdBtnAjouter.getScene().getWindow().hide();
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("../gui/ReclamationRecu.fxml"));
+             Parent root = loader.load();
+             pane.getChildren().add(root);
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
+
 }

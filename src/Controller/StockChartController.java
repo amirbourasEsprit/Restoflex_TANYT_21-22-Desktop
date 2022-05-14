@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
+import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -51,8 +52,6 @@ public class StockChartController implements Initializable {
      * Initializes the controller class.
      */
     ObservableList<PieChart.Data>data=FXCollections.observableArrayList();
-    @FXML
-    private Button cancel;
 
     /**
      * Initializes the controller class.
@@ -73,33 +72,21 @@ public class StockChartController implements Initializable {
            
 
            
-          String query = "SELECT COUNT(*),nom_produit_stock FROM stock GROUP BY nom_produit_stock" ;
-       
+          String query = "SELECT COUNT(*), s.nom_stock FROM stock s where s.id_fournisseur= "+utilisateur.current_user.getId_fournisseur()+" GROUP BY nom_stock";
+          System.out.println(query.toString());
              PreparedStatement PreparedStatement = cnx.prepareStatement(query);
              rs = PreparedStatement.executeQuery();
             
                      
             while (rs.next()){               
-               data.add(new PieChart.Data(rs.getString("nom_produit_stock"),rs.getInt("COUNT(*)")));
+               data.add(new PieChart.Data(rs.getString("nom_stock"),rs.getInt("COUNT(*)")));
             }     
       
       
-        piechart.setTitle("**Statistiques nombres des produits**");
+        piechart.setTitle("**Statistiques quantités des produits**");
         piechart.setLegendSide(Side.LEFT);
         piechart.setData(data);
     
     }
 
-    @FXML
-    private void cancel(ActionEvent event) throws IOException {
-   
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Stock.fxml"));
-      Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-    }
-    
 }

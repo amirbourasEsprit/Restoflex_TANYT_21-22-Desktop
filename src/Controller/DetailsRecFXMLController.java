@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.reclamation;
 import java.net.URL;
@@ -50,8 +50,18 @@ public class DetailsRecFXMLController implements Initializable {
        this.r=res;
         Destinataire.setText(r.getDestinataire());
         description.setText(r.getDescription());
-    Statut.setText(r.getStatut_reclamation());
-    Date.setText(""+r.getDate_reclamation());
+        Statut.setText(r.getStatut_reclamation());
+        Date.setText(""+r.getDate_reclamation());
+        
+    }
+   public void setReservation1 (reclamation res){  
+      ReclamationService rs =new ReclamationService();
+       this.r=res;
+        Destinataire.setText(r.utilisateur.getPrenom());
+        description.setText(r.getDescription());
+        Statut.setText(r.getStatut_reclamation());
+        Date.setText(""+r.getDate_reclamation());
+        
     }
 }
     

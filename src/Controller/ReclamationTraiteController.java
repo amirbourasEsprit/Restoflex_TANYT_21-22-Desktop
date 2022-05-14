@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
-import static controllers.ReclamationFXMLController.r;
+import static Controller.ReclamationFXMLController.r;
 import entities.reclamation;
+import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -31,6 +32,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import service.ReclamationService;
@@ -55,19 +57,22 @@ public class ReclamationTraiteController implements Initializable {
     
     @FXML
     private DatePicker recherche;
+    utilisateur util=utilisateur.current_user;
 
     /**
      * Initializes the controller class.
      */
     static reclamation r;
     ObservableList<reclamation> listR ;
-      int current_user =8;
-     String UserName ="Salma";
-     int role =3;
+      int current_user =util.getId_utilisateur();
+     String UserName =util.getPrenom();
+     int role =util.getId_role();
     @FXML
     private Button btnretour;
     @FXML
     private Button btnDetails;
+    @FXML
+    private AnchorPane pane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -168,13 +173,9 @@ public class ReclamationTraiteController implements Initializable {
     @FXML
     private void retour(ActionEvent event) {
          try {
-             IdBtnSupp.getScene().getWindow().hide();
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/ReclamationRecu.fxml"));
-            Stage mainStage= new Stage();
-            Scene scene = new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ReclamationRecu.fxml"));
+           Parent root = loader.load();
+           pane.getChildren().add(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -187,14 +188,10 @@ public class ReclamationTraiteController implements Initializable {
            
             FXMLLoader loader1 = new FXMLLoader();
             loader1.setLocation(getClass().getResource("../gui/DetailsRecFXML.fxml"));
-
-            Parent parent = (Parent) loader1.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(parent));
-            stage.show();
+            Parent root = loader1.load();
+             pane.getChildren().add(root);
             DetailsRecFXMLController details = loader1.getController();
             details.setReservation(r);
-            
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

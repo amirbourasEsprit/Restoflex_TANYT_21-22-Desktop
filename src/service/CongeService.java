@@ -134,7 +134,8 @@ public class CongeService implements I_CongeService<Conge>{
     public void approuverConge(Conge cong) throws SQLException {
       
         try {
-             String req = "UPDATE conge SET etat=?WHERE id_conge =? ";
+             String req = "UPDATE conge SET etat= ? WHERE id_conge = ?";
+             System.out.println(req);
              prst= con.prepareStatement(req);
            
              prst.setString(1,"approuvé");
@@ -200,14 +201,14 @@ public class CongeService implements I_CongeService<Conge>{
     public void soldeConge(int id, int nb) throws SQLException {
       
         try {
-             String req = "UPDATE utilisateur SET solde_conge= solde_conge- '"+nb+"' WHERE id_utilisateur = ? ";
+             String req = "UPDATE utilisateur SET solde_conge= solde_conge-'"+nb+"' WHERE id_utilisateur=?";
              prst= con.prepareStatement(req);
            
            //  prst.setInt(1,4);
              prst.setInt(1, id);
 
             prst.executeUpdate();
-            System.out.println("solde --");
+            System.out.println(req);
 
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
@@ -239,6 +240,7 @@ public class CongeService implements I_CongeService<Conge>{
                  u.setNom(rs.getString(9));
                  u.setPrenom(rs.getString(10));
                  u.setEmail(rs.getString(13));
+                 u.setSolde_conge(rs.getInt(18));
                  cong.user=u;
                 congList.add(cong);
                 System.out.println("affichage avec succée");

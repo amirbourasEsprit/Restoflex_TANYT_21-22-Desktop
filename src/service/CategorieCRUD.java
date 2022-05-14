@@ -87,7 +87,7 @@ public class CategorieCRUD implements I_categorie<categorie>{
                 
                 
                 categorieList.add(u);
-                System.out.println("affichage succées");
+              
             }
 
         } catch (Exception e) {
@@ -115,7 +115,7 @@ public class CategorieCRUD implements I_categorie<categorie>{
                 
                 
                 categorieList.add(u);
-                System.out.println("affichage succées");
+             
             }
 
         } catch (Exception e) {

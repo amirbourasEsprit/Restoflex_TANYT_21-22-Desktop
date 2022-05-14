@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package Controller;
 
 import entities.Commande;
 import entities.facture;
+import entities.stock;
+import entities.utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -28,9 +30,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import service.CommandeCRUD;
 import service.FactureService;
+import service.StockService;
 
 /**
  * FXML Controller class
@@ -53,6 +58,9 @@ public class CmdFournisseurController implements Initializable {
     private TableColumn<Commande, String> colPdt;
 
     protected static  Commande c;
+    utilisateur u=utilisateur.current_user;
+    @FXML
+    private AnchorPane pane;
     /**
      * Initializes the controller class.
      */
@@ -65,8 +73,8 @@ public class CmdFournisseurController implements Initializable {
     
      public void affichCmd(){
         
-        int user_session_res_id=3; //on remplace current user id_rest
-        int user_session_fournisseur_id=1;//on remplace current user fournisseur id
+        int user_session_res_id=u.getId_rest(); //on remplace current user id_rest
+        int user_session_fournisseur_id=u.getId_fournisseur();//on remplace current user fournisseur id
     
         FactureService fs = new FactureService();
         ObservableList<Commande> data = FXCollections.observableArrayList(fs.afficherCommande(user_session_res_id, user_session_fournisseur_id));
@@ -89,13 +97,18 @@ public class CmdFournisseurController implements Initializable {
     
     @FXML
     private void ajouterFact(ActionEvent event) {
-        
+             int user_session_res_id=u.getId_rest(); //on remplace current user id_rest
+            int user_session_fournisseur_id=u.getId_fournisseur();//on remplace current user fournisseur id
+            
             c = tableCmd.getSelectionModel().getSelectedItem();
             FactureService fs = new FactureService();
-            
-            int user_session_res_id=3; //on remplace current user id_rest
-            int user_session_fournisseur_id=1;//on remplace current user fournisseur id
-            
+            CommandeCRUD commande=new CommandeCRUD();
+            Commande cmd=new Commande();
+            StockService stockService=new StockService();
+            System.out.println(c.getQuantite()+c.produit.getNom_pdt());
+             stockService.modifierQuantiteStock(c.getQuantite(),user_session_fournisseur_id,c.produit.getNom_pdt());
+            cmd.setStatut("En Livraison");
+            commande.modifierCommandeStatut(cmd, c.getId_cmd());
             float totalFacture = fs.calculTotal(c.getId_cmd());
             java.util.Date date = new java.util.Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -109,11 +122,9 @@ public class CmdFournisseurController implements Initializable {
             a.setContentText("Facture crée avec succès !");
             a.show();
             
-            Parent p1 = FXMLLoader.load(getClass().getResource("../gui/ListeFacture.fxml"));
-            Scene test1 = new Scene(p1);
-            Stage App1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            App1.setScene(test1);
-            App1.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ListeFacture.fxml"));
+            Parent root = loader.load();
+             pane.getChildren().add(root);
         } catch (IOException ex) {
             Logger.getLogger(CmdFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }

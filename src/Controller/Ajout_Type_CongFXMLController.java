@@ -3,21 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Controller;
 
 import entities.type_conge;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -43,6 +47,8 @@ public class Ajout_Type_CongFXMLController implements Initializable {
     private Button annuler;
     @FXML
     private TextField nom_Tcong;
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -78,7 +84,7 @@ public class Ajout_Type_CongFXMLController implements Initializable {
         AnimationType type = AnimationType.POPUP;
         tray.setAnimationType(type);
         tray.setTitle("Notifications");
-        tray.setMessage("Congé supprimé avec succès");
+        tray.setMessage("Type congé ajouter avec succès");
         tray.setNotificationType(NotificationType.SUCCESS);
         tray.showAndDismiss(Duration.seconds(5));
               //((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
@@ -86,9 +92,14 @@ public class Ajout_Type_CongFXMLController implements Initializable {
     }
     
     @FXML
-    private void annuler(ActionEvent event) {
-        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    private void annuler(ActionEvent event) throws IOException {
+        
+         FXMLLoader loader =new FXMLLoader(getClass().getResource("../GUI/Afficher_Type_CongeFXML.fxml"));
+         Parent root = loader.load();
+         pane.getChildren().add(root);
     }
+
+   
 }
 
   
